@@ -76,3 +76,38 @@
     font-weight: bold;
     color: #222; /* Dark color for percentage */
   }
+
+  .csv-table {
+    margin-top: 20px;
+  }
+  
+  .csv-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .csv-data-table th, .csv-data-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .csv-data-table th {
+    background-color: #3880ff;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .csv-data-table td {
+    color: #333;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #3880ff;
+    margin-bottom: 10px;
+  }
+  
