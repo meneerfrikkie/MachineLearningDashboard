@@ -1,0 +1,7 @@
+{
+  "name": "BCIMLDashboard",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
