@@ -95,19 +95,12 @@
   }
   
   .csv-data-table th {
-    background-color: #3880ff;
-    color: white;
+    background-color: #f8f9fa;
+    color: 222;
     font-weight: bold;
   }
   
   .csv-data-table td {
     color: #333;
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #3880ff;
-    margin-bottom: 10px;
   }
   
