@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { csv } from 'd3-fetch';
+import Papa from 'papaparse';
 import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonRow, IonCol } from '@ionic/react';
 import { motion } from 'framer-motion';
 
 interface PredictionData {
-  actual: number;
-  predicted: number;
+  actual: string;
+  predicted: string;
 }
 
 const WristPredictionAnimation: React.FC = () => {
@@ -14,11 +14,15 @@ const WristPredictionAnimation: React.FC = () => {
 
   useEffect(() => {
     // Load and parse the CSV file
-    csv<PredictionData>('/data/WristPredictionsModel.csv').then(parsedData => {
-      setData(parsedData.map(d => ({
-        actual: parseInt(d.actual),
-        predicted: parseInt(d.predicted)
-      })));
+    Papa.parse<PredictionData>('/data/WristPredictionsModel.csv', {
+      header: true,
+      download: true,
+      complete: (result) => {
+        setData(result.data);
+      },
+      error: (error) => {
+        console.error("Error parsing CSV file:", error);
+      }
     });
   }, []);
 
@@ -32,7 +36,7 @@ const WristPredictionAnimation: React.FC = () => {
     return () => clearInterval(interval);
   }, [data]);
 
-  const getWristPosition = (value: number) => value === 1 ? "Extended" : "Flexed";
+  const getWristPosition = (value: string) => parseInt(value) === 1 ? "Extended" : "Flexed";
 
   return (
     <IonCard>
@@ -49,11 +53,11 @@ const WristPredictionAnimation: React.FC = () => {
               <IonCardContent>
                 <motion.div
                   className="animation-circle actual-circle"
-                  animate={{ y: data[currentIndex]?.actual === 1 ? -20 : 20 }}
+                  animate={{ y: parseInt(data[currentIndex]?.actual) === 1 ? -20 : 20 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 />
                 <IonText color="primary">
-                  <p>{getWristPosition(data[currentIndex]?.actual)}</p>
+                  <p>{data[currentIndex] && getWristPosition(data[currentIndex].actual)}</p>
                 </IonText>
               </IonCardContent>
             </IonCard>
@@ -66,11 +70,11 @@ const WristPredictionAnimation: React.FC = () => {
               <IonCardContent>
                 <motion.div
                   className="animation-circle predicted-circle"
-                  animate={{ y: data[currentIndex]?.predicted === 1 ? -20 : 20 }}
+                  animate={{ y: parseInt(data[currentIndex]?.predicted) === 1 ? -20 : 20 }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 />
                 <IonText color="success">
-                  <p>{getWristPosition(data[currentIndex]?.predicted)}</p>
+                  <p>{data[currentIndex] && getWristPosition(data[currentIndex].predicted)}</p>
                 </IonText>
               </IonCardContent>
             </IonCard>
