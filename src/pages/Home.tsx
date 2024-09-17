@@ -3,6 +3,7 @@ import { speedometerOutline, checkmarkCircleOutline, pulseOutline, statsChartOut
 import Papa, { ParseResult } from 'papaparse';  // Import PapaParse and types
 import { useState, useEffect } from 'react';
 import './Home.css';
+import WristPredictionAnimation from './WristPredictionAnimation'; // Import the new component
 
 const Home: React.FC = () => {
   const [csvData, setCsvData] = useState<any[]>([]); // To store CSV data
@@ -176,6 +177,15 @@ const Home: React.FC = () => {
             </div>
           </IonContent>
         </IonModal>
+
+        {/* Add the Wrist Prediction Animation section */}
+        <IonGrid>
+          <IonRow>
+            <IonCol>
+              <WristPredictionAnimation />
+            </IonCol>
+          </IonRow>
+        </IonGrid>
 
         {/* EEG Channels and Description */}
         <IonGrid>

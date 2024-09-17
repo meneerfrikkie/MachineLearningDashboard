@@ -220,3 +220,34 @@
     width: 100%;
   }
 }
+
+/* Custom styles for the animation circles */
+.animation-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.actual-circle {
+  background-color: #3880ff; /* Primary color */
+}
+
+.predicted-circle {
+  background-color: #10dc60; /* Success color */
+}
+
+/* Center text for IonText */
+.ion-text-center {
+  text-align: center;
+}
+
+/* Adjustments for IonCard within the animation section */
+ion-card {
+  margin: 10px 0;
+}
+
+ion-card-content {
+  padding: 20px;
+}
