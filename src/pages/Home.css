@@ -221,33 +221,89 @@
   }
 }
 
-/* Custom styles for the animation circles */
-.animation-circle {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-.actual-circle {
-  background-color: #3880ff; /* Primary color */
-}
-
-.predicted-circle {
-  background-color: #10dc60; /* Success color */
-}
-
-/* Center text for IonText */
-.ion-text-center {
+/* Container for the entire prediction section */
+.prediction-container {
+  padding: 20px;
   text-align: center;
 }
 
-/* Adjustments for IonCard within the animation section */
-ion-card {
-  margin: 10px 0;
+/* Header style */
+.card-header ion-card-title {
+  text-align: left;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--custom-card-metric);
+  margin-bottom: 15px;
 }
 
-ion-card-content {
-  padding: 20px;
+/* Row to hold the actual vs predicted boxes */
+.prediction-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+/* Wrist box styles */
+.wrist-box {
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.actual-box {
+  background-color: #f0f0f0;
+}
+
+.predicted-box {
+  background-color: #f0f0f0;
+}
+
+/* Wrist information inside the boxes */
+.wrist-info {
+  text-align: center;
+}
+
+.wrist-info h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Trial info at the bottom */
+.trial-info p {
+  font-size: 1rem;
+  margin-top: 10px;
+  color: #666;
+}
+
+/* Circle container for the icons */
+.circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto; /* Center the circle */
+  background-color: #f0f0f0; /* Default color */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Color when actual and predicted match */
+.match {
+  background-color: #10dc60; /* Green when they match */
+}
+
+/* Color when actual and predicted do not match */
+.mismatch {
+  background-color: #f04141; /* Red when they don't match */
+}
+
+/* Icon styling inside the circle */
+.hand-icon {
+  font-size: 40px;
+  color: #ffffff; /* White icon for better contrast */
 }

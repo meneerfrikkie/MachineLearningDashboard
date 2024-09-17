@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
-import { IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonText, IonRow, IonCol } from '@ionic/react';
+import { IonText, IonRow, IonCol, IonCardTitle, IonCard, IonCardHeader, IonCardContent} from '@ionic/react';
 import { motion } from 'framer-motion';
+import { IoHandLeft, IoHandLeftOutline } from 'react-icons/io5'; // Icons for wrist states
 
 interface PredictionData {
   actual: string;
@@ -38,53 +39,51 @@ const WristPredictionAnimation: React.FC = () => {
 
   const getWristPosition = (value: string) => parseInt(value) === 1 ? "Extended" : "Flexed";
 
+  const renderWristIcon = (position: string) => {
+    return position === "Extended" ? <IoHandLeft className="hand-icon" /> : <IoHandLeftOutline className="hand-icon" />;
+  };
+
+  const isMatch = data[currentIndex]?.actual === data[currentIndex]?.predicted;
+
   return (
-    <IonCard>
-      <IonCardHeader>
-        <IonCardTitle>Wrist Position Prediction</IonCardTitle>
+    <IonCard className="custom-card">
+      <IonCardHeader className="card-header">
+        <IonCardTitle>Live Model Prediction</IonCardTitle>
       </IonCardHeader>
       <IonCardContent>
-        <IonRow>
-          <IonCol size="6">
-            <IonCard className="ion-text-center">
-              <IonCardHeader>
-                <IonCardTitle>Actual</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <motion.div
-                  className="animation-circle actual-circle"
-                  animate={{ y: parseInt(data[currentIndex]?.actual) === 1 ? -20 : 20 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                />
-                <IonText color="primary">
-                  <p>{data[currentIndex] && getWristPosition(data[currentIndex].actual)}</p>
-                </IonText>
-              </IonCardContent>
-            </IonCard>
-          </IonCol>
-          <IonCol size="6">
-            <IonCard className="ion-text-center">
-              <IonCardHeader>
-                <IonCardTitle>Predicted</IonCardTitle>
-              </IonCardHeader>
-              <IonCardContent>
-                <motion.div
-                  className="animation-circle predicted-circle"
-                  animate={{ y: parseInt(data[currentIndex]?.predicted) === 1 ? -20 : 20 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                />
-                <IonText color="success">
-                  <p>{data[currentIndex] && getWristPosition(data[currentIndex].predicted)}</p>
-                </IonText>
-              </IonCardContent>
-            </IonCard>
-          </IonCol>
-        </IonRow>
-        <IonText className="ion-text-center">
-          <p>
-            Frame: {currentIndex + 1} / {data.length}
-          </p>
+      <IonRow className="prediction-row">
+      <IonCol size="6">
+        <motion.div
+          className={`circle ${isMatch ? 'match' : 'mismatch'}`}
+          animate={{ opacity: [0, 1] }}
+          transition={{ duration: 0.5 }}
+        >
+          {data[currentIndex] && renderWristIcon(getWristPosition(data[currentIndex].actual))}
+        </motion.div>
+        <IonText color="primary">
+          <p>{data[currentIndex] && getWristPosition(data[currentIndex].actual)}</p>
         </IonText>
+      </IonCol>
+
+      <IonCol size="6">
+        <motion.div
+          className={`circle ${isMatch ? 'match' : 'mismatch'}`}
+          animate={{ opacity: [0, 1] }}
+          transition={{ duration: 0.5 }}
+        >
+          {data[currentIndex] && renderWristIcon(getWristPosition(data[currentIndex].predicted))}
+        </motion.div>
+        <IonText color="success">
+          <p>{data[currentIndex] && getWristPosition(data[currentIndex].predicted)}</p>
+        </IonText>
+      </IonCol>
+
+      </IonRow>
+      <div className="trial-info">
+        <IonText className="ion-text-center">
+          <p>Trial: {currentIndex + 1} / {data.length}</p>
+        </IonText>
+      </div>
       </IonCardContent>
     </IonCard>
   );
