@@ -174,14 +174,19 @@ const Home: React.FC = () => {
           </IonContent>
         </IonModal>
 
-        {/* Display CSV data */}
         <IonGrid className="csv-table">
           <IonRow>
             <IonCol>
+              <h2>Experiment Results</h2>
               <table className="csv-data-table">
                 <thead>
                   <tr>
-                    <th>Experiment Name</th>
+                    <th>Model</th>
+                    <th>Feature Selection</th>
+                    <th>Feature Extraction</th>
+                    <th>Channel Pair Set</th>
+                    <th>Sliding Window Used</th>
+                    <th>Reduced Pairs Greater Than</th>
                     <th>Mean Accuracy</th>
                     <th>Mean Precision</th>
                     <th>Mean Recall</th>
@@ -191,11 +196,16 @@ const Home: React.FC = () => {
                 <tbody>
                   {csvData.map((row, index) => (
                     <tr key={index}>
-                      <td>{row.ExperimentName}</td>
-                      <td>{parseFloat(row.OverallMeanAccuracy).toFixed(2)}%</td>
-                      <td>{parseFloat(row.OverallMeanPrecision).toFixed(2)}%</td>
-                      <td>{parseFloat(row.OverallMeanRecall).toFixed(2)}%</td>
-                      <td>{parseFloat(row.OverallMeanF1Score).toFixed(2)}%</td>
+                      <td data-label="Model">{row.Model}</td>
+                      <td data-label="Feature Selection">{row.FeatureSelection}</td>
+                      <td data-label="Feature Extraction">{row.FeatureExtraction}</td>
+                      <td data-label="Channel Pair Set">{row.ChannelPair}</td>
+                      <td data-label="Sliding Window Used">{row.SlidingWindow}</td>
+                      <td data-label="Reduced Pairs Greater Than">{row.ReducedPairsGreaterThan}</td>
+                      <td data-label="Mean Accuracy">{parseFloat(row.OverallMeanAccuracy).toFixed(2)}%</td>
+                      <td data-label="Mean Precision">{parseFloat(row.OverallMeanPrecision).toFixed(2)}%</td>
+                      <td data-label="Mean Recall">{parseFloat(row.OverallMeanRecall).toFixed(2)}%</td>
+                      <td data-label="Mean F1 Score">{parseFloat(row.OverallMeanF1Score).toFixed(2)}%</td>
                     </tr>
                   ))}
                 </tbody>
@@ -203,6 +213,7 @@ const Home: React.FC = () => {
             </IonCol>
           </IonRow>
         </IonGrid>
+
 
       </IonContent>
     </IonPage>
