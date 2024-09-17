@@ -1,5 +1,5 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonModal, IonButton } from '@ionic/react';
-import { speedometerOutline, checkmarkCircleOutline, pulseOutline, statsChartOutline, clipboardOutline } from 'ionicons/icons';  // Import icons
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonModal, IonButton, IonButtons } from '@ionic/react';
+import { speedometerOutline, checkmarkCircleOutline, pulseOutline, statsChartOutline, clipboardOutline, closeOutline } from 'ionicons/icons';  // Import icons
 import Papa, { ParseResult } from 'papaparse';  // Import PapaParse and types
 import { useState, useEffect } from 'react';
 import './Home.css';
@@ -102,7 +102,6 @@ const Home: React.FC = () => {
         </IonHeader>
 
         {/* Grid layout for the tile cards */}
-        {/* Grid layout for the tile cards */}
         <IonGrid>
           <IonRow>
             {/* Metric 1: Accuracy */}
@@ -160,24 +159,29 @@ const Home: React.FC = () => {
         </IonGrid>
 
         {/* Modal for Metric Info */}
-        <IonModal isOpen={showModal} onDidDismiss={() => setShowModal(false)}>
+        <IonModal isOpen={showModal} onDidDismiss={() => setShowModal(false)} className="custom-modal">
           <IonHeader>
-            <IonToolbar>
-              <IonTitle>Metric Information</IonTitle>
+            <IonToolbar className="modal-toolbar">
+              <IonButtons slot="start">
+                <IonButton onClick={() => setShowModal(false)}>
+                  <IonIcon icon={closeOutline} />
+                </IonButton>
+              </IonButtons>
+              <IonTitle className="modal-title">Metric Information</IonTitle>
             </IonToolbar>
           </IonHeader>
-          <IonContent className="ion-padding">
-            <p>{modalContent}</p>
-            <IonButton expand="full" onClick={() => setShowModal(false)}>
-              Close
-            </IonButton>
+          <IonContent className="ion-padding modal-content">
+            <div className="modal-body">
+              <p className="modal-text">{modalContent}</p>
+            </div>
           </IonContent>
         </IonModal>
+
 
         <IonGrid className="csv-table">
           <IonRow>
             <IonCol>
-              <h2>Experiment Results</h2>
+              <IonTitle size="large" className="table-title" >Experiment Results</IonTitle>
               <table className="csv-data-table">
                 <thead>
                   <tr>

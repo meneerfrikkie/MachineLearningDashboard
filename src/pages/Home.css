@@ -62,7 +62,56 @@
   font-weight: bold;
 }
 
+/* Custom Modal Styling */
+.custom-modal {
+  --background: var(--custom-card-bg); /* Adjusts based on light or dark theme */
+  border-radius: 20px; /* Adds soft rounded corners */
+  padding: 20px; /* Adds space around modal content */
+}
+
+.modal-toolbar {
+  --background: var(--custom-header-bg); /* Matches the primary theme color */
+  color: var(--custom-header-text); /* White text */
+}
+
+.modal-title {
+  font-size: 1.5rem; /* Larger font size for the title */
+  font-weight: bold; /* Emphasizes the title */
+  color: var(--custom-header-text); /* White title color */
+}
+
+.modal-content {
+  text-align: left;
+  padding: 20px;
+}
+
+.modal-body {
+  margin-bottom: 20px; /* Adds space between the content and button */
+}
+
+.modal-text {
+  font-size: 1.2rem; /* Slightly larger text */
+  color: var(--custom-card-text); /* Text color adjusts to theme */
+  line-height: 1.5; /* Improves readability */
+}
+
+.close-button {
+  --background: var(--custom-header-bg); /* Primary theme color for button */
+  --color: var(--custom-header-text); /* White text on the button */
+  font-size: 1rem;
+  border-radius: 10px; /* Soft rounded corners */
+  padding: 10px;
+}
+
+
 /* Table Styling */
+
+.table-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  padding: 8px 12px;
+}
+
 .csv-data-table {
   width: 100%;
   border-collapse: collapse;
