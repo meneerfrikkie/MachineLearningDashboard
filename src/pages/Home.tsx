@@ -177,6 +177,34 @@ const Home: React.FC = () => {
           </IonContent>
         </IonModal>
 
+        {/* EEG Channels and Description */}
+        <IonGrid>
+          <IonRow className="eeg-section">
+            {/* Left half: Image */}
+            <IonCol size="12" size-md="6" className="eeg-image-col">
+              <div className="image-wrapper">
+                <img
+                  src="./images/ChannelPair2.png"
+                  alt="EEG Channels Used"
+                  className="eeg-image"
+                />
+              </div>
+            </IonCol>
+
+            {/* Right half: Card with Description */}
+            <IonCol size="12" size-md="6" className="eeg-description-col">
+              <div className="custom-description-card">
+                <IonCardTitle>EEG Channels Used</IonCardTitle>
+                <p>
+                  The metrics displayed are calculated using specific EEG channels.
+                  The channels used in this experiment include x, y, and z, which help capture relevant brain activity.
+                </p>
+              </div>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+
+
 
         <IonGrid className="csv-table">
           <IonRow>

@@ -158,3 +158,65 @@
     border-bottom: 0;
   }
 }
+
+/* EEG Section Styling */
+.eeg-section {
+  display: flex;
+  align-items: stretch;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.eeg-image-col, .eeg-description-col {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.image-wrapper, .custom-description-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--custom-card-bg);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.eeg-image {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.custom-description-card {
+  padding: 20px;
+  color: var(--custom-card-text);
+}
+
+.custom-description-card ion-card-title {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--custom-card-metric);
+  margin-bottom: 15px;
+}
+
+.custom-description-card p {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--custom-card-text);
+}
+
+@media (max-width: 768px) {
+  .eeg-section {
+    flex-direction: column;
+  }
+
+  .eeg-image-col, .eeg-description-col {
+    width: 100%;
+  }
+}
