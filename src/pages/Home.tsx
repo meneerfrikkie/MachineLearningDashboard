@@ -1,4 +1,29 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonModal, IonButton, IonButtons, IonMenu, IonMenuButton, IonList, IonItem, IonText } from '@ionic/react'; // Ensure all needed components are imported
+import {
+  IonContent,
+  IonHeader,
+  IonPage,
+  IonTitle,
+  IonToolbar,
+  IonGrid,
+  IonRow,
+  IonCol,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
+  IonIcon,
+  IonModal,
+  IonButton,
+  IonButtons,
+  IonMenu,
+  IonMenuButton,
+  IonList,
+  IonItem,
+  IonText,
+  IonRefresher,
+  IonRefresherContent,
+  RefresherEventDetail,
+} from '@ionic/react';
 import { speedometerOutline, checkmarkCircleOutline, pulseOutline, statsChartOutline, clipboardOutline, closeOutline } from 'ionicons/icons'; // Import icons
 import { useState } from 'react';
 import './Home.css';
@@ -28,7 +53,15 @@ const Home: React.FC = () => {
         content = '';
     }
     setModalContent(content); // Set the modal content based on clicked metric
-    setShowModal(true); 
+    setShowModal(true);
+  };
+
+  // Function to handle pull-to-refresh
+  const handleRefresh = (event: CustomEvent<RefresherEventDetail>) => {
+    // Simulate refreshing data (e.g., API call, update state)
+    setTimeout(() => {
+      event.detail.complete(); // Complete the refresher action
+    }, 2000); // Simulated delay (e.g., fetching data)
   };
 
   return (
@@ -62,6 +95,12 @@ const Home: React.FC = () => {
 
         {/* Collapsible Header when scrolling */}
         <IonContent fullscreen>
+
+          {/* Pull-to-refresh */}
+          <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
+            <IonRefresherContent pullingText="Pull to refresh" refreshingSpinner="bubbles"></IonRefresherContent>
+          </IonRefresher>
+
           <IonHeader collapse="condense">
             <IonToolbar className="condensed-toolbar">
               <IonTitle size="large" className="condensed-title">Dashboard</IonTitle>
