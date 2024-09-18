@@ -53,6 +53,45 @@ http://ionicframework.com/docs/theming/ */
     }
   }
   
+/* Mobile First: Ensure buttons and content are easily accessible on mobile */
+.custom-toolbar {
+  --ion-toolbar-background: #f8f9fa; /* Light background color */
+  --padding-start: 10px;
+  --padding-end: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.header-content {
+  display: flex;
+  justify-content: center;
+  width: 100%; /* Centers the title */
+}
+
+.header-title {
+  font-size: 1.4rem; /* Adjusts size for mobile */
+  text-align: center; /* Ensures the title is centered on mobile */
+  flex-grow: 1;
+}
+
+/* Ensure the IonButtons and IonMenuButton are easily tappable */
+ion-menu-button {
+  font-size: 1.5rem; /* Make the button larger for easier tapping */
+}
+
+@media (min-width: 768px) {
+  /* Tablet and above */
+  .header-title {
+    font-size: 1.8rem; /* Larger title for bigger screens */
+  }
+
+  .custom-toolbar {
+    --padding-start: 20px; /* Increase padding on larger screens */
+    --padding-end: 20px;
+  }
+}
+
+
   /* Default Styles Using the Palette */
   .custom-toolbar {
     background-color: var(--custom-header-bg);

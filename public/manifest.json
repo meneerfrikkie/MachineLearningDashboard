@@ -1,6 +1,6 @@
 {
-  "short_name": "Dashboard",
-  "name": "Machine Learning Dashboard",
+  "short_name": "Dashboard 🦾",
+  "name": "Machine Learning Dashboard 🦾",
   "icons": [
     {
       "src": "assets/icon/favicon.png",
@@ -17,5 +17,7 @@
   "start_url": ".",
   "display": "standalone",
   "theme_color": "#ffffff",
-  "background_color": "#ffffff"
+  "background_color": "#ffffff",
+  "scope":"/",
+  "orientation":"portrait"
 }
