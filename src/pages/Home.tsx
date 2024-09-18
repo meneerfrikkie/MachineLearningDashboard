@@ -48,13 +48,13 @@ const Home: React.FC = () => {
         </IonContent>
       </IonMenu>
 
-      <IonPage className='ion-page' id="main-content">
+      <IonPage className="ion-page" id="main-content">
         {/* Main Header */}
         <IonHeader>
           <IonToolbar className="custom-toolbar">
             <IonButtons slot="start">
-                <IonMenuButton></IonMenuButton>
-              </IonButtons>
+              <IonMenuButton></IonMenuButton>
+            </IonButtons>
             <div className="header-content">
               <IonTitle className="header-title">Dashboard</IonTitle>
             </div>
