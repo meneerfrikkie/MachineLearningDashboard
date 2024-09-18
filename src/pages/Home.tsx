@@ -55,7 +55,7 @@ const Home: React.FC = () => {
             <IonButtons slot="start">
               <IonMenuButton></IonMenuButton>
             </IonButtons>
-            <div className="header-content">
+            <div>
               <IonTitle className="header-title">Dashboard</IonTitle>
             </div>
           </IonToolbar>
