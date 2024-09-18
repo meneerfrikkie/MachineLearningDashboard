@@ -153,7 +153,7 @@ const Home: React.FC = () => {
 
               {/* Right Side: EEG Channels Image and Description in one card */}
               <IonCol size="12" size-md="6">
-                <IonCard className="custom-card" style={{ backgroundColor: '#ffffff' }}>
+                <IonCard className="custom-card">
                   <IonCardHeader className="card-header">
                     <IonCardTitle>EEG Channels Used</IonCardTitle>
                   </IonCardHeader>

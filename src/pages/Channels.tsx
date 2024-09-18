@@ -43,7 +43,7 @@ const ChannelImages: React.FC = () => {
             <IonRow>
               {/* Column 1: Channel Pair 1 */}
               <IonCol size="12" size-md="4">
-                <IonCard className="custom-card" style={{ backgroundColor: '#ffffff' }}>
+                <IonCard className="custom-card">
                   <IonCardHeader>
                     <IonCardTitle>Channel Pair 1</IonCardTitle>
                   </IonCardHeader>
@@ -62,7 +62,7 @@ const ChannelImages: React.FC = () => {
 
               {/* Column 2: Channel Pair 2 */}
               <IonCol size="12" size-md="4">
-                <IonCard className="custom-card" style={{ backgroundColor: '#ffffff' }}>
+                <IonCard className="custom-card">
                   <IonCardHeader>
                     <IonCardTitle>Channel Pair 2</IonCardTitle>
                   </IonCardHeader>
@@ -81,7 +81,7 @@ const ChannelImages: React.FC = () => {
 
               {/* Column 3: Channel Pair 3 */}
               <IonCol size="12" size-md="4">
-                <IonCard className="custom-card" style={{ backgroundColor: '#ffffff' }}>
+                <IonCard className="custom-card">
                   <IonCardHeader>
                     <IonCardTitle>Channel Pair 3</IonCardTitle>
                   </IonCardHeader>

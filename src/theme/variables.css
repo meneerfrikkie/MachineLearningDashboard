@@ -13,10 +13,10 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-medium: #92949c;
     --ion-color-dark: #222428;
   
-    /* Custom Colors */
+    /* Custom Colors */ 
     --custom-header-bg: #f8f9fa;
     --custom-header-text: #333;
-    --custom-card-bg: #fdfdfd;
+    --custom-card-bg: #ffffff; /* #fdfdfd */
     --custom-card-text: #333;
     --custom-card-metric: #222;
   
@@ -70,7 +70,7 @@ http://ionicframework.com/docs/theming/ */
 
 .header-title {
   font-size: 1.4rem; /* Adjusts size for mobile */
-  text-align: left; /* Ensures the title is centered on mobile */
+  text-align: center; /* Ensures the title is centered on mobile */
   flex-grow: 1;
 }
 

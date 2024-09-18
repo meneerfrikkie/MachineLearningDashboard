@@ -50,7 +50,7 @@ const WristPredictionAnimation: React.FC = () => {
   const isMatch = data[currentIndex]?.actual === data[currentIndex]?.predicted;
 
   return (
-    <IonCard className="custom-card" style={{ backgroundColor: '#ffffff' }}>
+    <IonCard className="custom-card">
       <IonCardHeader className="card-header">
         <IonCardTitle>Live Model Prediction</IonCardTitle>
       </IonCardHeader>
