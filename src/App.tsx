@@ -3,6 +3,7 @@ import { IonApp, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import ResultsTable from './pages/InvestigationResults';
+import ChannelImages from './pages/Channels';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -47,6 +48,7 @@ const App: React.FC = () => (
           <Redirect to="/home" />
         </Route>
         <Route path="/results" component={ResultsTable} exact/>
+        <Route path="/channels" component={ChannelImages} exact/>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

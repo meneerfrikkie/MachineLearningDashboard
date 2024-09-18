@@ -44,6 +44,7 @@ const ResultsTable: React.FC = () => {
           <IonList>
             <IonItem routerLink="/">Dashboard</IonItem>
             <IonItem routerLink="/results">Results Table</IonItem>
+            <IonItem routerLink="/channels">EEG Channels</IonItem> {/* New Page Link */}
           </IonList>
         </IonContent>
       </IonMenu>
