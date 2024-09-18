@@ -51,13 +51,11 @@ const ResultsTable: React.FC = () => {
     <IonPage className='ion-page' id="main-content">
       {/* Main Header */}
       <IonHeader>
-          <IonToolbar className="custom-toolbar">
+          <IonToolbar>
             <IonButtons slot="start">
-                <IonMenuButton></IonMenuButton>
-              </IonButtons>
-            <div className="header-content">
-              <IonTitle className="header-title">Investigation Results</IonTitle>
-            </div>
+              <IonMenuButton></IonMenuButton>
+            </IonButtons>
+            <IonTitle className="header-title">Results</IonTitle>
           </IonToolbar>
         </IonHeader>
 
@@ -65,7 +63,7 @@ const ResultsTable: React.FC = () => {
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar className="condensed-toolbar">
-            <IonTitle size="large" className="condensed-title">Investigation Results</IonTitle>
+            <IonTitle size="large" className="condensed-title">Results</IonTitle>
           </IonToolbar>
         </IonHeader>
         

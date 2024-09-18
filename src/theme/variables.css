@@ -70,7 +70,7 @@ http://ionicframework.com/docs/theming/ */
 
 .header-title {
   font-size: 1.4rem; /* Adjusts size for mobile */
-  text-align: center; /* Ensures the title is centered on mobile */
+  text-align: left; /* Ensures the title is centered on mobile */
   flex-grow: 1;
 }
 
@@ -90,7 +90,6 @@ ion-menu-button {
     --padding-end: 20px;
   }
 }
-
 
   /* Default Styles Using the Palette */
   .custom-toolbar {

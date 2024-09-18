@@ -55,9 +55,7 @@ const Home: React.FC = () => {
             <IonButtons slot="start">
               <IonMenuButton></IonMenuButton>
             </IonButtons>
-            <div>
-              <IonTitle className="header-title">Dashboard</IonTitle>
-            </div>
+            <IonTitle className="header-title">Dashboard</IonTitle>
           </IonToolbar>
         </IonHeader>
 
@@ -68,7 +66,7 @@ const Home: React.FC = () => {
               <IonTitle size="large" className="condensed-title">Dashboard</IonTitle>
             </IonToolbar>
           </IonHeader>
-
+          
           {/* Grid layout for the tile cards */}
           <IonGrid>
             <IonRow>
@@ -154,7 +152,7 @@ const Home: React.FC = () => {
 
               {/* Right Side: EEG Channels Image and Description in one card */}
               <IonCol size="12" size-md="6">
-                <IonCard className="custom-card">
+                <IonCard className="custom-card" style={{ backgroundColor: '#ffffff' }}>
                   <IonCardHeader className="card-header">
                     <IonCardTitle>EEG Channels Used</IonCardTitle>
                   </IonCardHeader>
