@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
-import { IonText, IonRow, IonCol, IonCardTitle, IonCard, IonCardHeader, IonCardContent } from '@ionic/react';
+import { IonText, IonRow, IonCol, IonCardTitle, IonCard, IonCardHeader, IonCardContent, IonTitle } from '@ionic/react';
 import { motion } from 'framer-motion';
-import { IoHandLeft, IoHandLeftOutline } from 'react-icons/io5'; // Icons for wrist states
-import { FaHandHolding } from "react-icons/fa";
+
+// Replace with actual image paths for wrist flexion/extension
+import wristFlexionImage from '/images/WristFlexion.png'; 
+import wristExtensionImage from '/images/WristExtention.png';
 
 interface PredictionData {
   actual: string;
@@ -40,14 +42,9 @@ const WristPredictionAnimation: React.FC = () => {
 
   const getWristPosition = (value: string) => parseInt(value) === 1 ? "Extended" : "Flexed";
 
-  const getRotationAngle = (position: string) => {
-    // Extended -> 90 degrees right; Flexed -> 180 degrees down
-    return position === "Extended" ? -90 : 90;
-  };
-
-  const renderWristIcon = (position: string) => {
-    // Change icon appearance based on position
-    return position === "Extended" ? <FaHandHolding className="hand-icon" /> : <FaHandHolding className="hand-icon" />;
+  const renderWristImage = (position: string) => {
+    // Use corresponding images for wrist positions
+    return position === "Extended" ? wristExtensionImage : wristFlexionImage;
   };
 
   const isMatch = data[currentIndex]?.actual === data[currentIndex]?.predicted;
@@ -58,31 +55,53 @@ const WristPredictionAnimation: React.FC = () => {
         <IonCardTitle>Live Model Prediction</IonCardTitle>
       </IonCardHeader>
       <IonCardContent>
-        <IonRow className="prediction-row">
+        <IonRow className="prediction-row" style={{ textAlign: 'center' }}>
+          {/* Actual Movement (Always Green) */}
           <IonCol size="6">
+            <IonCardTitle style={{ marginBottom: '20px'}}>Actual Movement</IonCardTitle>
             <motion.div
-              className={`circle ${isMatch ? 'match' : 'mismatch'}`}
-              animate={{ rotate: getRotationAngle(getWristPosition(data[currentIndex]?.actual)) }} // Rotate based on actual position
-              transition={{ duration: 0.5 }}
+              className="circle"
+              style={{
+                backgroundColor: 'green', // Always green for actual
+                display: 'inline-block',
+                padding: '20px',
+                borderRadius: '50%',
+              }}
             >
-              {data[currentIndex] && renderWristIcon(getWristPosition(data[currentIndex].actual))}
+              <img
+                src={data[currentIndex] ? renderWristImage(getWristPosition(data[currentIndex].actual)) : ''}
+                alt={getWristPosition(data[currentIndex]?.actual)}
+                style={{ width: '100px', height: '100px' }} // Adjust the size as needed
+              />
             </motion.div>
-            <IonText color="primary">
+            <IonCardTitle color="primary">
               <p>{data[currentIndex] && getWristPosition(data[currentIndex].actual)}</p>
-            </IonText>
+            </IonCardTitle>
           </IonCol>
 
+          {/* Predicted Movement (Green or Red) */}
           <IonCol size="6">
+          <IonCardTitle style={{ marginBottom: '20px'}}>Predicted Movement</IonCardTitle>
             <motion.div
-              className={`circle ${isMatch ? 'match' : 'mismatch'}`}
-              animate={{ rotate: getRotationAngle(getWristPosition(data[currentIndex]?.predicted)) }} // Rotate based on predicted position
+              className="circle"
+              style={{
+                backgroundColor: isMatch ? 'green' : 'red', // Green if it matches, red otherwise
+                display: 'inline-block',
+                padding: '20px',
+                borderRadius: '50%',
+              }}
+              animate={{ rotate: [0, 360] }} // Example animation for predicted
               transition={{ duration: 0.5 }}
             >
-              {data[currentIndex] && renderWristIcon(getWristPosition(data[currentIndex].predicted))}
+              <img
+                src={data[currentIndex] ? renderWristImage(getWristPosition(data[currentIndex].predicted)) : ''}
+                alt={getWristPosition(data[currentIndex]?.predicted)}
+                style={{ width: '100px', height: '100px' }} // Adjust the size as needed
+              />
             </motion.div>
-            <IonText color="success">
+            <IonCardTitle color={isMatch ? 'success' : 'danger'}>
               <p>{data[currentIndex] && getWristPosition(data[currentIndex].predicted)}</p>
-            </IonText>
+            </IonCardTitle>
           </IonCol>
         </IonRow>
 
