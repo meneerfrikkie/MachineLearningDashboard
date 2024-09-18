@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonModal, IonButton, IonButtons, IonMenu, IonMenuButton, IonList, IonItem } from '@ionic/react'; // Ensure all needed components are imported
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonIcon, IonModal, IonButton, IonButtons, IonMenu, IonMenuButton, IonList, IonItem, IonText } from '@ionic/react'; // Ensure all needed components are imported
 import { speedometerOutline, checkmarkCircleOutline, pulseOutline, statsChartOutline, clipboardOutline, closeOutline } from 'ionicons/icons'; // Import icons
 import { useState } from 'react';
 import './Home.css';
@@ -51,7 +51,7 @@ const Home: React.FC = () => {
       <IonPage className="ion-page" id="main-content">
         {/* Main Header */}
         <IonHeader>
-          <IonToolbar className="custom-toolbar">
+          <IonToolbar>
             <IonButtons slot="start">
               <IonMenuButton></IonMenuButton>
             </IonButtons>
@@ -145,41 +145,39 @@ const Home: React.FC = () => {
             </IonContent>
           </IonModal>
 
-          {/* Add the Wrist Prediction Animation section */}
           <IonGrid>
             <IonRow>
-              <IonCol>
-                <WristPredictionAnimation />
+              {/* Left Side: Wrist Animation Block */}
+              <IonCol size="12" size-md="6">
+                    <WristPredictionAnimation />
+              </IonCol>
+
+              {/* Right Side: EEG Channels Image and Description in one card */}
+              <IonCol size="12" size-md="6">
+                <IonCard className="custom-card">
+                  <IonCardHeader className="card-header">
+                    <IonCardTitle>EEG Channels Used</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <div className="image-wrapper">
+                      <img
+                        src="./images/ChannelPair2.png"
+                        alt="EEG Channels Used"
+                        className="eeg-image"
+                      />
+                    </div>
+                    <div className="custom-description-card">
+                        <IonText style={{ textAlign: 'left' }}>
+                          The metrics displayed are calculated using specific EEG channels.
+                          The channels used in this experiment include x, y, and z, which help capture relevant brain activity.
+                        </IonText>
+                    </div>
+                  </IonCardContent>
+                </IonCard>
               </IonCol>
             </IonRow>
           </IonGrid>
 
-          {/* EEG Channels and Description */}
-          <IonGrid>
-            <IonRow className="eeg-section">
-              {/* Left half: Image */}
-              <IonCol size="12" size-md="6" className="eeg-image-col">
-                <div className="image-wrapper">
-                  <img
-                    src="./images/ChannelPair2.png"
-                    alt="EEG Channels Used"
-                    className="eeg-image"
-                  />
-                </div>
-              </IonCol>
-
-              {/* Right half: Card with Description */}
-              <IonCol size="12" size-md="6" className="eeg-description-col">
-                <div className="custom-description-card">
-                  <IonCardTitle>EEG Channels Used</IonCardTitle>
-                  <p>
-                    The metrics displayed are calculated using specific EEG channels.
-                    The channels used in this experiment include x, y, and z, which help capture relevant brain activity.
-                  </p>
-                </div>
-              </IonCol>
-            </IonRow>
-          </IonGrid>
         </IonContent>
       </IonPage>
     </>
