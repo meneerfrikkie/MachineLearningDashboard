@@ -1,0 +1,57 @@
+/* Menu.css */
+
+.menu-title {
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--custom-header-text); /* Ionic default primary color */
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .menu-list {
+    padding: 10px;
+  }
+  
+  .menu-item {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    padding: 15px 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .menu-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .menu-icon {
+    font-size: 24px;
+    color: var(--custom-card-text); /* Ionic default primary color */
+    margin-right: 10px;
+  }
+  
+  .ion-label {
+    font-size: 18px;
+    color: #333;
+  }
+  
+  @media (min-width: 768px) {
+    .ion-menu {
+      width: 250px; /* Slightly wider for desktop */
+    }
+  
+    .menu-title {
+      font-size: 24px;
+    }
+  
+    .menu-item {
+      padding: 20px 15px;
+      font-size: 20px;
+    }
+  
+    .menu-icon {
+      font-size: 26px;
+    }
+  }
+  

@@ -1,24 +1,12 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonGrid, IonRow, IonCol, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonMenu, IonMenuButton, IonButtons, IonList, IonItem, IonText } from '@ionic/react';
 import './Home.css'; // Assuming you'll have custom CSS for styling
+import Menu from './Menu'; // Import the Menu component
 
 const ChannelImages: React.FC = () => {
   return (
     <>
       {/* Side Menu */}
-      <IonMenu contentId="main-content">
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Menu</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-          <IonList>
-            <IonItem routerLink="/">Dashboard</IonItem>
-            <IonItem routerLink="/results">Results Table</IonItem>
-            <IonItem routerLink="/channels">EEG Channels</IonItem> {/* New Page Link */}
-          </IonList>
-        </IonContent>
-      </IonMenu>
+      <Menu/>
 
       <IonPage className="ion-page" id="main-content">
         {/* Main Header */}

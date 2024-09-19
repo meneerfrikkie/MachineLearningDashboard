@@ -3,6 +3,7 @@ import { fileTray } from 'ionicons/icons';
 import { useState, useEffect } from 'react';
 import Papa, { ParseResult } from 'papaparse';
 import './Home.css';
+import Menu from './Menu';
 
 const ResultsTable: React.FC = () => {
   const [csvData, setCsvData] = useState<any[]>([]);
@@ -34,20 +35,7 @@ const ResultsTable: React.FC = () => {
   return (
     <>
     {/* Side Menu */}
-    <IonMenu contentId="main-content">
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Menu</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-          <IonList>
-            <IonItem routerLink="/">Dashboard</IonItem>
-            <IonItem routerLink="/results">Results Table</IonItem>
-            <IonItem routerLink="/channels">EEG Channels</IonItem> {/* New Page Link */}
-          </IonList>
-        </IonContent>
-      </IonMenu>
+    <Menu/>
 
     <IonPage className='ion-page' id="main-content">
       {/* Main Header */}

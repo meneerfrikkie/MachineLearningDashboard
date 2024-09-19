@@ -12,6 +12,7 @@ import {
   IonCardTitle,
   IonCardContent,
   IonIcon,
+  IonLabel,
   IonModal,
   IonButton,
   IonButtons,
@@ -24,10 +25,11 @@ import {
   IonRefresherContent,
   RefresherEventDetail,
 } from '@ionic/react';
-import { speedometerOutline, checkmarkCircleOutline, pulseOutline, statsChartOutline, clipboardOutline, closeOutline } from 'ionicons/icons'; // Import icons
+import { speedometerOutline, checkmarkCircleOutline, pulseOutline, statsChartOutline, clipboardOutline, closeOutline, homeOutline } from 'ionicons/icons'; // Import icons
 import { useState } from 'react';
 import './Home.css';
 import WristPredictionAnimation from './WristPredictionAnimation'; // Import the new component
+import Menu from './Menu';
 
 const Home: React.FC = () => {
   const [showModal, setShowModal] = useState(false); // Modal visibility state
@@ -67,20 +69,7 @@ const Home: React.FC = () => {
   return (
     <>
       {/* Side Menu */}
-      <IonMenu contentId="main-content">
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Menu</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonContent>
-          <IonList>
-            <IonItem routerLink="/">Dashboard</IonItem>
-            <IonItem routerLink="/results">Results Table</IonItem>
-            <IonItem routerLink="/channels">EEG Channels</IonItem> {/* New Page Link */}
-          </IonList>
-        </IonContent>
-      </IonMenu>
+      <Menu/>
 
       <IonPage className="ion-page" id="main-content">
         {/* Main Header */}
