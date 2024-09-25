@@ -62,6 +62,13 @@
   font-weight: bold;
 }
 
+.metric-description {
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #6c757d;
+  line-height: 1.4;
+}
+
 /* Custom Modal Styling */
 .custom-modal {
   --background: var(--custom-card-bg); /* Adjusts based on light or dark theme */
