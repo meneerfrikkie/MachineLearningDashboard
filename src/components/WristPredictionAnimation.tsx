@@ -105,11 +105,18 @@ const WristPredictionAnimation: React.FC = () => {
           </IonCol>
         </IonRow>
 
-        <div className="trial-info">
+        {/* Flash animation when trial changes */}
+        <motion.div
+          className="trial-info"
+          key={currentIndex} // Key ensures animation runs on change
+          initial={{ scale: 0.8, opacity: 0.5 }}
+          animate={{ scale: [0.8, 1.2, 1], opacity: [0.5, 1] }} // Flash effect
+          transition={{ duration: 0.5 }}
+        >
           <IonText className="ion-text-center">
             <p>Trial: {currentIndex + 1} / {data.length}</p>
           </IonText>
-        </div>
+        </motion.div>
       </IonCardContent>
     </IonCard>
   );
