@@ -22,9 +22,9 @@ import {
   RefresherEventDetail,
 } from '@ionic/react';
 import { speedometerOutline, checkmarkCircleOutline, pulseOutline, statsChartOutline, clipboardOutline, closeOutline, homeOutline } from 'ionicons/icons'; // Import icons
-import { useState } from 'react';
 import './Home.css';
-import WristPredictionAnimation from './WristPredictionAnimation'; // Import the new component
+import WristPredictionAnimation from '../components/WristPredictionAnimation'; // Import the new component
+import CircularChart from '../components/CircularChart';
 import Menu from './Menu';
 
 const Home: React.FC = () => {
@@ -72,12 +72,13 @@ const Home: React.FC = () => {
               {/* Metric 1: Accuracy */}
               <IonCol size="6" size-md="3">
                 <IonCard className="custom-card" style={{ height: '100%' }}>
+                  <IonCardContent>
+                    <CircularChart percentage={77.29} baseColor="#007BFF"/>
+                  </IonCardContent>
                   <IonCardHeader className="card-header">
-                    <IonIcon icon={speedometerOutline} className="card-icon" />
                     <IonCardTitle>Accuracy</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
-                    <span className="card-metric">77.29%</span>
                     <p className="metric-description">
                       Accuracy refers to the percentage of correct predictions out of all predictions made.
                     </p>
@@ -88,12 +89,13 @@ const Home: React.FC = () => {
               {/* Metric 2: Precision */}
               <IonCol size="6" size-md="3">
                 <IonCard className="custom-card" style={{ height: '100%' }}>
+                  <IonCardContent>
+                    <CircularChart percentage={78.29} baseColor="#007BFF"/>
+                  </IonCardContent>
                   <IonCardHeader className="card-header">
-                    <IonIcon icon={checkmarkCircleOutline} className="card-icon" />
                     <IonCardTitle>Precision</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
-                    <span className="card-metric">78.29%</span>
                     <p className="metric-description">
                       Precision is the percentage of true positive predictions among all positive predictions.
                     </p>
@@ -104,12 +106,13 @@ const Home: React.FC = () => {
               {/* Metric 3: Recall */}
               <IonCol size="6" size-md="3">
                 <IonCard className="custom-card" style={{ height: '100%' }}>
+                  <IonCardContent>
+                    <CircularChart percentage={77.23} baseColor="#007BFF"/>
+                  </IonCardContent>
                   <IonCardHeader className="card-header">
-                    <IonIcon icon={pulseOutline} className="card-icon" />
                     <IonCardTitle>Recall</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
-                    <span className="card-metric">77.23%</span>
                     <p className="metric-description">
                       Recall is the percentage of true positive predictions among all actual positive instances.
                     </p>
@@ -120,12 +123,13 @@ const Home: React.FC = () => {
               {/* Metric 4: F1 Score */}
               <IonCol size="6" size-md="3">
                 <IonCard className="custom-card" style={{ height: '100%' }}>
+                  <IonCardContent>
+                    <CircularChart percentage={77.01} baseColor="#007BFF"/>
+                  </IonCardContent>
                   <IonCardHeader className="card-header">
-                    <IonIcon icon={statsChartOutline} className="card-icon" />
                     <IonCardTitle>F1 Score</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
-                    <span className="card-metric">77.01%</span>
                     <p className="metric-description">
                       The F1 score is the harmonic mean of precision and recall, providing a balance between the two.
                     </p>
