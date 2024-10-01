@@ -1,57 +1,92 @@
 /* Menu.css */
 
+/* General Menu Styling */
 .menu-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: var(--custom-header-text); /* Ionic default primary color */
-    text-align: center;
-    padding: 10px 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--ion-color-primary); /* Use Ionic's primary color for consistency */
+  text-align: center;
+  padding: 15px 0;
+}
+
+.menu-toolbar {
+  background: var(--ion-color-light);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.menu-list {
+  padding: 0 10px;
+  margin: 20px 0;
+}
+
+/* Menu Item Styling */
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin: 8px 0;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  background-color: #ffffff; /* Light background */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05); /* Light shadow for depth */
+}
+
+.menu-item:hover {
+  background-color: #f0f4ff; /* Slightly tinted background on hover */
+  transform: translateY(-2px);
+}
+
+.menu-item:active {
+  background-color: #e0e8ff; /* Slightly darker tint when pressed */
+  transform: translateY(0);
+}
+
+/* Menu Icon Styling */
+.menu-icon {
+  font-size: 1.8rem;
+  color: var(--ion-color-primary);
+  margin-right: 15px;
+}
+
+/* Menu Label Styling */
+ion-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333; /* Neutral text color for readability */
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+  .menu-title {
+    font-size: 1.4rem;
   }
-  
-  .menu-list {
-    padding: 10px;
-  }
-  
+
   .menu-item {
-    display: flex;
-    align-items: center;
-    font-size: 18px;
-    padding: 15px 10px;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    padding: 10px 12px;
+    font-size: 0.9rem;
   }
-  
-  .menu-item:hover {
-    background-color: #f0f0f0;
-  }
-  
+
   .menu-icon {
-    font-size: 24px;
-    color: var(--custom-card-text); /* Ionic default primary color */
-    margin-right: 10px;
+    font-size: 1.6rem;
   }
-  
-  .ion-label {
-    font-size: 18px;
-    color: #333;
+}
+
+/* Desktop Optimization */
+@media (min-width: 768px) {
+  .ion-menu {
+    width: 260px; /* Wider menu for desktop */
   }
-  
-  @media (min-width: 768px) {
-    .ion-menu {
-      width: 250px; /* Slightly wider for desktop */
-    }
-  
-    .menu-title {
-      font-size: 24px;
-    }
-  
-    .menu-item {
-      padding: 20px 15px;
-      font-size: 20px;
-    }
-  
-    .menu-icon {
-      font-size: 26px;
-    }
+
+  .menu-title {
+    font-size: 1.6rem;
   }
-  
+
+  .menu-item {
+    padding: 18px 16px;
+    font-size: 1.1rem;
+  }
+
+  .menu-icon {
+    font-size: 2rem;
+  }
+}

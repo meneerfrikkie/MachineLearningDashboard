@@ -4,6 +4,7 @@ import { IonReactRouter } from '@ionic/react-router';
 import Home from './pages/Home';
 import ResultsTable from './pages/InvestigationResults';
 import ChannelImages from './pages/Channels';
+import WristPredictionPage from './pages/InteractiveModel';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -49,6 +50,7 @@ const App: React.FC = () => (
         </Route>
         <Route path="/results" component={ResultsTable} exact/>
         <Route path="/channels" component={ChannelImages} exact/>
+        <Route path="/interactive-model" component={WristPredictionPage} exact/>
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>
