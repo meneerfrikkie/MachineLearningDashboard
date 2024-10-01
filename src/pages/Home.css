@@ -1,313 +1,148 @@
 /* Main Header Styling */
-.custom-toolbar {
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds depth with shadow */
-}
-
-.header-content {
-  display: flex;
-  align-items: center; /* Vertically aligns the icon and title */
-}
-
 .header-title {
-  font-size: 1.8rem; /* Larger font size for title */
-  font-weight: bold;
-}
-
-.header-icon {
-  font-size: 2rem; /* Adjust the icon size */
-  vertical-align: middle; /* Ensures vertical alignment with the text */
-}
-
-/* Condensed Header Styling */
-.condensed-toolbar {
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.condensed-title {
   font-size: 1.6rem;
   font-weight: bold;
+  text-align: center;
 }
 
 /* Metric Card Styling */
-.custom-card {
-  text-align: center;
-  border-radius: 15px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Adds a soft shadow for depth */
-  transition: transform 0.3s ease;
-}
-
-.custom-card:hover {
-  transform: translateY(-5px); /* Hover effect for interactivity */
-}
-
-.card-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-icon {
-  font-size: 3rem; /* Icon size */
-  margin-bottom: 10px;
-}
-
-.card-title {
-  font-size: 1.2rem; /* Title font size */
-}
-
-.card-metric {
-  font-size: 2.5rem; /* Larger font size for percentage */
-  font-weight: bold;
-}
-
-.metric-description {
-  margin-top: 10px;
-  font-size: 0.9em;
-  color: #6c757d;
-  line-height: 1.4;
-}
-
-/* Custom Modal Styling */
-.custom-modal {
-  --background: var(--custom-card-bg); /* Adjusts based on light or dark theme */
-  border-radius: 20px; /* Adds soft rounded corners */
-  padding: 20px; /* Adds space around modal content */
-}
-
-.modal-toolbar {
-  --background: var(--custom-header-bg); /* Matches the primary theme color */
-  color: var(--custom-header-text); /* White text */
-}
-
-.modal-title {
-  font-size: 1.5rem; /* Larger font size for the title */
-  font-weight: bold; /* Emphasizes the title */
-  color: var(--custom-header-text); /* White title color */
-}
-
-.modal-content {
+.metric-card {
   text-align: left;
-  padding: 20px;
-}
-
-.modal-body {
-  margin-bottom: 20px; /* Adds space between the content and button */
-}
-
-.modal-text {
-  font-size: 1.2rem; /* Slightly larger text */
-  color: var(--custom-card-text); /* Text color adjusts to theme */
-  line-height: 1.5; /* Improves readability */
-}
-
-.close-button {
-  --background: var(--custom-header-bg); /* Primary theme color for button */
-  --color: var(--custom-header-text); /* White text on the button */
-  font-size: 1rem;
-  border-radius: 10px; /* Soft rounded corners */
-  padding: 10px;
-}
-
-
-/* Table Styling */
-
-.table-title {
-  font-size: 1.6rem;
-  font-weight: bold;
-  padding: 8px 12px;
-}
-
-.csv-data-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.csv-data-table th,
-.csv-data-table td {
-  padding: 8px 12px;
-  border: 1px solid var(--custom-border-color);
-  text-align: left;
-}
-
-/* Mobile view adjustments */
-@media screen and (max-width: 768px) {
-  .csv-data-table thead {
-    display: none; /* Hide table headers on small screens */
-  }
-
-  .csv-data-table tbody tr {
-    display: block;
-    margin-bottom: 20px;
-    border: 1px solid var(--custom-border-color);
-  }
-
-  .csv-data-table tbody td {
-    display: block;
-    text-align: right;
-    padding-left: 50%;
-    position: relative;
-    border-bottom: 1px solid var(--custom-border-color);
-  }
-
-  .csv-data-table tbody td:before {
-    content: attr(data-label); /* Display the table header before each data */
-    position: absolute;
-    left: 10px;
-    width: 45%;
-    padding-right: 10px;
-    font-weight: bold;
-    text-align: left;
-  }
-
-  .csv-data-table tbody td:last-child {
-    border-bottom: 0;
-  }
-}
-
-/* EEG Section Styling */
-.eeg-section {
-  display: flex;
-  align-items: stretch;
-  margin-top: 20px;
-  margin-bottom: 40px;
-}
-
-.eeg-image-col, .eeg-description-col {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-}
-
-.image-wrapper, .custom-description-card {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.eeg-image {
-  width: 100%;
-  height: auto;
-  max-width: 100%;
   border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
-.custom-description-card {
-  padding: 20px;
-  color: var(--custom-card-text);
-}
-
-.custom-description-card ion-card-title {
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: var(--custom-card-metric);
+.metric-row {
+  align-items: center;
   margin-bottom: 15px;
 }
 
-.custom-description-card p {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: var(--custom-card-text);
+.metric-description {
+  font-size: 1rem;
+  color: #6c757d;
+  margin-bottom: 20px;
+  text-align: justify;
 }
 
+/* Chart Column */
+.chart-column {
+  text-align: center;
+}
+
+.custom-card {
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.image-wrapper {
+  width: 100%;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.eeg-image {
+  width: 80%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .eeg-section {
+  .header-title {
+    font-size: 1.4rem;
+  }
+
+  .metric-row {
     flex-direction: column;
   }
 
-  .eeg-image-col, .eeg-description-col {
+  .chart-column,
+  .description-column {
+    text-align: center;
+  }
+
+  .metric-description {
+    text-align: justify;
+  }
+
+  .eeg-image {
     width: 100%;
   }
 }
 
-/* Container for the entire prediction section */
-.prediction-container {
-  padding: 20px;
-  text-align: center;
+/* General Styling */
+.ion-page {
+  background-color: #f8f9fa;
 }
 
-/* Header style */
-.card-header ion-card-title {
-  text-align: left;
-  font-size: 1.6rem;
-  font-weight: bold;
-  color: var(--custom-card-metric);
+.ion-toolbar {
+  --ion-background-color: #f8f9fa;
+  --ion-text-color: #333;
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+.condensed-toolbar {
+  background-color: #007BFF;
+  color: white;
+}
+
+.ml-model-card {
+  margin-bottom: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.model-details-row {
+  align-items: center;
   margin-bottom: 15px;
 }
 
-/* Row to hold the actual vs predicted boxes */
-.prediction-row {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-}
-
-/* Wrist box styles */
-.wrist-box {
-  height: 250px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.actual-box {
-  background-color: #f0f0f0;
-}
-
-.predicted-box {
-  background-color: #f0f0f0;
-}
-
-/* Wrist information inside the boxes */
-.wrist-info {
+.detail-icon-col {
   text-align: center;
 }
 
-.wrist-info h3 {
+.detail-icon {
+  font-size: 2.5rem;
+  color: #007BFF;
+}
+
+.detail-text-col {
+  text-align: left;
+}
+
+.detail-heading {
   font-size: 1.2rem;
-  margin-bottom: 10px;
+  font-weight: bold;
   color: #333;
 }
 
-/* Trial info at the bottom */
-.trial-info p {
+.detail-description {
   font-size: 1rem;
-  margin-top: 10px;
-  color: #666;
+  color: #555;
+  margin: 5px 0 0;
 }
 
-/* Circle container for the icons */
-.circle {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto; /* Center the circle */
-  background-color: #f0f0f0; /* Default color */
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-}
+@media (max-width: 768px) {
+  .ml-model-card {
+    margin-bottom: 15px;
+  }
 
-/* Color when actual and predicted match */
-.match {
-  background-color: #10dc60; /* Green when they match */
-}
+  .detail-icon {
+    font-size: 2rem;
+  }
 
-/* Color when actual and predicted do not match */
-.mismatch {
-  background-color: #f04141; /* Red when they don't match */
-}
+  .detail-heading {
+    font-size: 1rem;
+  }
 
-/* Icon styling inside the circle */
-.hand-icon {
-  font-size: 40px;
-  color: #ffffff; /* White icon for better contrast */
+  .detail-description {
+    font-size: 0.9rem;
+  }
 }

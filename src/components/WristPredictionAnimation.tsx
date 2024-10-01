@@ -4,7 +4,7 @@ import { IonText, IonRow, IonCol, IonCardTitle, IonCard, IonCardHeader, IonCardC
 import { motion } from 'framer-motion';
 
 // Replace with actual image paths for wrist flexion/extension
-import wristFlexionImage from '/images/WristFlexion.png'; 
+import wristFlexionImage from '/images/WristFlexion.png';
 import wristExtensionImage from '/images/WristExtention.png';
 
 interface PredictionData {
@@ -58,7 +58,7 @@ const WristPredictionAnimation: React.FC = () => {
         <IonRow className="prediction-row" style={{ textAlign: 'center' }}>
           {/* Actual Movement (Always Green) */}
           <IonCol size="6">
-            <IonCardTitle style={{ marginBottom: '20px'}}>Actual Movement</IonCardTitle>
+            <IonCardTitle style={{ marginBottom: '20px' }}>Actual Movement</IonCardTitle>
             <motion.div
               className="circle"
               style={{
@@ -81,7 +81,7 @@ const WristPredictionAnimation: React.FC = () => {
 
           {/* Predicted Movement (Green or Red) */}
           <IonCol size="6">
-          <IonCardTitle style={{ marginBottom: '20px'}}>Predicted Movement</IonCardTitle>
+            <IonCardTitle style={{ marginBottom: '20px' }}>Predicted Movement</IonCardTitle>
             <motion.div
               className="circle"
               style={{

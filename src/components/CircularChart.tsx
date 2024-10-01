@@ -1,30 +1,28 @@
 import React, { useEffect, useRef } from 'react';
 import { Chart, ArcElement, Tooltip, Legend, DoughnutController } from 'chart.js';
+import './CircularChart.css';
 
 Chart.register(ArcElement, Tooltip, Legend, DoughnutController);
 
 interface CircularChartProps {
   percentage: number;
-  baseColor: string; // New prop to accept a base color (hex or rgba)
 }
 
-// Helper function to generate lighter shades of the base color
-const generateBlueShades = (baseColor: string): string[] => {
-  // For simplicity, we'll just adjust the opacity to create shades of blue
-  // You can also adjust lightness in HSL for more control
+// Helper function to generate different shades of blue
+const generateBlueShades = (): string[] => {
   return [
-    `${baseColor}FF`, // original color
-    `${baseColor}CC`, // slightly lighter
-    `${baseColor}99`, // even lighter
-    `${baseColor}66`, // lightest
+    '#007BFF',  // Dark Blue
+    '#3399FF',  // Medium Blue
+    '#66B2FF',  // Lighter Blue
+    '#99CCFF',  // Lightest Blue
   ];
 };
 
-const CircularChart: React.FC<CircularChartProps> = ({ percentage, baseColor }) => {
+const CircularChart: React.FC<CircularChartProps> = ({ percentage }) => {
   const chartRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
-    const blueShades = generateBlueShades(baseColor); // Generate four shades of blue
+    const blueShades = generateBlueShades(); // Generate four shades of blue
 
     const chart = new Chart(chartRef.current!, {
       type: 'doughnut',
@@ -38,9 +36,9 @@ const CircularChart: React.FC<CircularChartProps> = ({ percentage, baseColor }) 
         ],
       },
       options: {
-        rotation: -90,
-        circumference: 180, // Only half circle for more stylish look
-        cutout: '80%', // Makes it circular
+        rotation: 0, // No rotation, for full circle
+        circumference: 360, // Full circle (360 degrees)
+        cutout: '80%', // Makes it look like a ring
         plugins: {
           tooltip: {
             enabled: false,
@@ -53,18 +51,18 @@ const CircularChart: React.FC<CircularChartProps> = ({ percentage, baseColor }) 
     return () => {
       chart.destroy();
     };
-  }, [percentage, baseColor]);
+  }, [percentage]);
 
   return (
-    <div style={{ position: 'relative', width: '100%', paddingTop: '100%' }}>
-      <canvas ref={chartRef} style={{ position: 'absolute', top: 0, left: 0 }} />
+    <div className="small-chart">
+      <canvas ref={chartRef} style={{ width: '100%', height: '100%' }} />
       <div
         style={{
           position: 'absolute',
-          top: '65%',
+          top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          fontSize: '2.5em',
+          fontSize: '1.5em',
           fontWeight: 'bold',
           color: '#4a4a4a',
         }}

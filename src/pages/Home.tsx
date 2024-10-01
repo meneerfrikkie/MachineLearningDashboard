@@ -11,53 +11,48 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
-  IonIcon,
-  IonModal,
-  IonButton,
   IonButtons,
   IonMenuButton,
   IonText,
+  IonList,
+  IonLabel,
+  IonItem,
+  IonIcon,
   IonRefresher,
   IonRefresherContent,
   RefresherEventDetail,
 } from '@ionic/react';
-import { speedometerOutline, checkmarkCircleOutline, pulseOutline, statsChartOutline, clipboardOutline, closeOutline, homeOutline } from 'ionicons/icons'; // Import icons
 import './Home.css';
-import WristPredictionAnimation from '../components/WristPredictionAnimation'; // Import the new component
+import WristPredictionAnimation from '../components/WristPredictionAnimation';
+import {analyticsOutline, fingerPrintOutline, filterOutline, constructOutline } from 'ionicons/icons'; // Icons used in the menu
 import CircularChart from '../components/CircularChart';
 import Menu from './Menu';
 
 const Home: React.FC = () => {
   // Function to handle pull-to-refresh
   const handleRefresh = (event: CustomEvent<RefresherEventDetail>) => {
-    // Simulate refreshing data (e.g., API call, update state)
     setTimeout(() => {
       event.detail.complete(); // Complete the refresher action
-    }, 2000); // Simulated delay (e.g., fetching data)
+    }, 2000);
   };
 
   return (
     <>
-      {/* Side Menu */}
       <Menu />
-
       <IonPage className="ion-page" id="main-content">
-        {/* Main Header */}
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">
-              <IonMenuButton></IonMenuButton>
+              <IonMenuButton />
             </IonButtons>
             <IonTitle className="header-title">Dashboard</IonTitle>
           </IonToolbar>
         </IonHeader>
 
-        {/* Collapsible Header when scrolling */}
         <IonContent fullscreen>
-
           {/* Pull-to-refresh */}
           <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
-            <IonRefresherContent pullingText="Pull to refresh" refreshingSpinner="bubbles"></IonRefresherContent>
+            <IonRefresherContent pullingText="Pull to refresh" refreshingSpinner="bubbles" />
           </IonRefresher>
 
           <IonHeader collapse="condense">
@@ -66,73 +61,107 @@ const Home: React.FC = () => {
             </IonToolbar>
           </IonHeader>
 
-          {/* Grid layout for the tile cards */}
           <IonGrid>
             <IonRow>
-              {/* Metric 1: Accuracy */}
-              <IonCol size="6" size-md="3">
-                <IonCard className="custom-card" style={{ height: '100%' }}>
-                  <IonCardContent>
-                    <CircularChart percentage={77.29} baseColor="#007BFF"/>
-                  </IonCardContent>
-                  <IonCardHeader className="card-header">
-                    <IonCardTitle>Accuracy</IonCardTitle>
-                  </IonCardHeader>
-                  <IonCardContent>
-                    <p className="metric-description">
-                      Accuracy refers to the percentage of correct predictions out of all predictions made.
-                    </p>
-                  </IonCardContent>
-                </IonCard>
+          
+              <IonCol size="12" size-md="6">
+              <IonCard className="custom-card ml-model-card">
+    <IonCardHeader className="card-header">
+      <IonCardTitle>Machine Learning Model</IonCardTitle>
+    </IonCardHeader>
+    <IonCardContent>
+      <IonList>
+        {/* Classifier */}
+        <IonItem lines="none" className="model-item">
+          <IonIcon slot="start" icon={analyticsOutline} className="model-icon" />
+          <IonLabel>
+            <h2 className="detail-heading">Classifier</h2>
+            <p className="detail-description">Support Vector Machine (SVM)</p>
+          </IonLabel>
+        </IonItem>
+
+        {/* Feature Extraction */}
+        <IonItem lines="none" className="model-item">
+          <IonIcon slot="start" icon={fingerPrintOutline} className="model-icon" />
+          <IonLabel>
+            <h2 className="detail-heading">Feature Extraction</h2>
+            <p className="detail-description">Principal Component Analysis (PCA)</p>
+          </IonLabel>
+        </IonItem>
+
+        {/* Feature Selection */}
+        <IonItem lines="none" className="model-item">
+          <IonIcon slot="start" icon={filterOutline} className="model-icon" />
+          <IonLabel>
+            <h2 className="detail-heading">Feature Selection</h2>
+            <p className="detail-description">Recursive Feature Elimination (RFE)</p>
+          </IonLabel>
+        </IonItem>
+
+        {/* Hyperparameter Tuning */}
+        <IonItem lines="none" className="model-item">
+          <IonIcon slot="start" icon={constructOutline} className="model-icon" />
+          <IonLabel>
+            <h2 className="detail-heading">Hyperparameter Tuning</h2>
+            <p className="detail-description">Grid Search with Cross Validation</p>
+          </IonLabel>
+        </IonItem>
+      </IonList>
+    </IonCardContent>
+  </IonCard>
+
+                {/* Wrist Prediction Animation */}
+                <WristPredictionAnimation />
               </IonCol>
 
-              {/* Metric 2: Precision */}
-              <IonCol size="6" size-md="3">
-                <IonCard className="custom-card" style={{ height: '100%' }}>
-                  <IonCardContent>
-                    <CircularChart percentage={78.29} baseColor="#007BFF"/>
-                  </IonCardContent>
-                  <IonCardHeader className="card-header">
-                    <IonCardTitle>Precision</IonCardTitle>
+              {/* Model Metrics Card */}
+              <IonCol size="12" size-md="6">
+                <IonCard className="custom-card">
+                  <IonCardHeader>
+                    <IonCardTitle>Model Metrics</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
                     <p className="metric-description">
-                      Precision is the percentage of true positive predictions among all positive predictions.
+                      The model metrics provide an overview of the model's performance.
                     </p>
-                  </IonCardContent>
-                </IonCard>
-              </IonCol>
-
-              {/* Metric 3: Recall */}
-              <IonCol size="6" size-md="3">
-                <IonCard className="custom-card" style={{ height: '100%' }}>
-                  <IonCardContent>
-                    <CircularChart percentage={77.23} baseColor="#007BFF"/>
-                  </IonCardContent>
-                  <IonCardHeader className="card-header">
-                    <IonCardTitle>Recall</IonCardTitle>
-                  </IonCardHeader>
-                  <IonCardContent>
-                    <p className="metric-description">
-                      Recall is the percentage of true positive predictions among all actual positive instances.
-                    </p>
-                  </IonCardContent>
-                </IonCard>
-              </IonCol>
-
-              {/* Metric 4: F1 Score */}
-              <IonCol size="6" size-md="3">
-                <IonCard className="custom-card" style={{ height: '100%' }}>
-                  <IonCardContent>
-                    <CircularChart percentage={77.01} baseColor="#007BFF"/>
-                  </IonCardContent>
-                  <IonCardHeader className="card-header">
-                    <IonCardTitle>F1 Score</IonCardTitle>
-                  </IonCardHeader>
-                  <IonCardContent>
-                    <p className="metric-description">
-                      The F1 score is the harmonic mean of precision and recall, providing a balance between the two.
-                    </p>
+                    <IonGrid>
+                      <IonRow className="metric-row">
+                        <IonCol size="4">
+                          <CircularChart percentage={77.29} />
+                        </IonCol>
+                        <IonCol size="8">
+                          <IonCardTitle>Accuracy</IonCardTitle>
+                          <p>Accuracy refers to the percentage of correct predictions out of all predictions made.</p>
+                        </IonCol>
+                      </IonRow>
+                      <IonRow className="metric-row">
+                        <IonCol size="4">
+                          <CircularChart percentage={78.29} />
+                        </IonCol>
+                        <IonCol size="8">
+                          <IonCardTitle>Precision</IonCardTitle>
+                          <p>Precision is the percentage of true positive predictions among all positive predictions.</p>
+                        </IonCol>
+                      </IonRow>
+                      <IonRow className="metric-row">
+                        <IonCol size="4">
+                          <CircularChart percentage={77.23} />
+                        </IonCol>
+                        <IonCol size="8">
+                          <IonCardTitle>Recall</IonCardTitle>
+                          <p>Recall is the percentage of true positive predictions among all actual positive instances.</p>
+                        </IonCol>
+                      </IonRow>
+                      <IonRow className="metric-row">
+                        <IonCol size="4">
+                          <CircularChart percentage={77.01} />
+                        </IonCol>
+                        <IonCol size="8">
+                          <IonCardTitle>F1 Score</IonCardTitle>
+                          <p>The F1 score is the harmonic mean of precision and recall, providing a balance between the two.</p>
+                        </IonCol>
+                      </IonRow>
+                    </IonGrid>
                   </IonCardContent>
                 </IonCard>
               </IonCol>
@@ -154,18 +183,11 @@ const Home: React.FC = () => {
                   </IonCardHeader>
                   <IonCardContent>
                     <div className="image-wrapper">
-                      <img
-                        src="./images/ChannelPair2.png"
-                        alt="EEG Channels Used"
-                        className="eeg-image"
-                      />
+                      <img src="./images/ChannelPair2.png" alt="EEG Channels Used" className="eeg-image" />
                     </div>
-                    <div className="custom-description-card">
-                      <IonText style={{ textAlign: 'left' }}>
-                        The metrics displayed are calculated using specific EEG channels.
-                        The channels used in this experiment include x, y, and z, which help capture relevant brain activity.
-                      </IonText>
-                    </div>
+                    <IonText>
+                      The metrics displayed are calculated using specific EEG channels. The channels used in this experiment include x, y, and z, which help capture relevant brain activity.
+                    </IonText>
                   </IonCardContent>
                 </IonCard>
               </IonCol>

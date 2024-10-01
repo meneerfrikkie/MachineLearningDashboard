@@ -3,127 +3,59 @@ http://ionicframework.com/docs/theming/ */
 
 /* Light Mode Palette */
 :root {
-    --ion-color-primary: #3880ff;
-    --ion-color-secondary: #3dc2ff;
-    --ion-color-tertiary: #5260ff;
-    --ion-color-success: #2dd36f;
-    --ion-color-warning: #ffc409;
-    --ion-color-danger: #eb445a;
-    --ion-color-light: #f4f5f8;
-    --ion-color-medium: #92949c;
-    --ion-color-dark: #222428;
-  
-    /* Custom Colors */ 
-    --custom-header-bg: #f8f9fa;
-    --custom-header-text: #333;
-    --custom-card-bg: #ffffff; /* #fdfdfd */
-    --custom-card-text: #333;
-    --custom-card-metric: #222;
-  
-    /* Additional Theme Customization */
-    --custom-background: #f4f5f8;  /* Light background for the app */
-    --custom-text-color: #333;      /* Default text color */
-    --custom-border-color: #ddd;    /* Border color for tables and cards */
-  }
-  
-  /* Dark Mode Palette */
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --ion-color-primary: #4c8dff;
-      --ion-color-secondary: #3ab8ff;
-      --ion-color-tertiary: #7a7fff;
-      --ion-color-success: #28c76f;
-      --ion-color-warning: #ffcf44;
-      --ion-color-danger: #ff5a67;
-      --ion-color-light: #1e1e1e;
-      --ion-color-medium: #666666;
-      --ion-color-dark: #ffffff;
-  
-      /* Custom Dark Theme Colors */
-      --custom-header-bg: #222428;
-      --custom-header-text: #f4f5f8;
-      --custom-card-bg: #333333;
-      --custom-card-text: #ffffff;
-      --custom-card-metric: #ffffff;
-  
-      /* Additional Dark Theme Customization */
-      --custom-background: #121212;  /* Dark background for the app */
-      --custom-text-color: #f4f5f8;  /* Light text color */
-      --custom-border-color: #444444; /* Darker border color for tables and cards */
-    }
-  }
-  
-/* Mobile First: Ensure buttons and content are easily accessible on mobile */
-.custom-toolbar {
-  --ion-toolbar-background: #f8f9fa; /* Light background color */
-  --padding-start: 10px;
-  --padding-end: 10px;
-  display: flex;
-  align-items: center;
+  --ion-color-primary: #3880ff;
+  --ion-color-secondary: #3dc2ff;
+  --ion-color-tertiary: #5260ff;
+  --ion-color-success: #2dd36f;
+  --ion-color-warning: #ffc409;
+  --ion-color-danger: #eb445a;
+  --ion-color-light: #f4f5f8;
+  --ion-color-medium: #92949c;
+  --ion-color-dark: #222428;
+
+  /* Custom Colors */
+  --custom-header-bg: #f8f9fa;
+  --custom-header-text: #333;
+  --custom-card-bg: #ffffff;
+  /* #fdfdfd */
+  --custom-card-text: #333;
+  --custom-card-metric: #222;
+
+  /* Additional Theme Customization */
+  --custom-background: #f4f5f8;
+  /* Light background for the app */
+  --custom-text-color: #333;
+  /* Default text color */
+  --custom-border-color: #ddd;
+  /* Border color for tables and cards */
 }
 
-.header-content {
-  display: flex;
-  justify-content: center;
-  width: 100%; /* Centers the title */
+/* Dark Mode Palette */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-color-primary: #4c8dff;
+    --ion-color-secondary: #3ab8ff;
+    --ion-color-tertiary: #7a7fff;
+    --ion-color-success: #28c76f;
+    --ion-color-warning: #ffcf44;
+    --ion-color-danger: #ff5a67;
+    --ion-color-light: #1e1e1e;
+    --ion-color-medium: #666666;
+    --ion-color-dark: #ffffff;
+
+    /* Custom Dark Theme Colors */
+    --custom-header-bg: #222428;
+    --custom-header-text: #f4f5f8;
+    --custom-card-bg: #333333;
+    --custom-card-text: #ffffff;
+    --custom-card-metric: #ffffff;
+
+    /* Additional Dark Theme Customization */
+    --custom-background: #121212;
+    /* Dark background for the app */
+    --custom-text-color: #f4f5f8;
+    /* Light text color */
+    --custom-border-color: #444444;
+    /* Darker border color for tables and cards */
+  }
 }
-
-.header-title {
-  font-size: 1.4rem; /* Adjusts size for mobile */
-  text-align: center; /* Ensures the title is centered on mobile */
-  flex-grow: 1;
-}
-
-/* Ensure the IonButtons and IonMenuButton are easily tappable */
-ion-menu-button {
-  font-size: 1.5rem; /* Make the button larger for easier tapping */
-}
-
-@media (min-width: 768px) {
-  /* Tablet and above */
-  .header-title {
-    font-size: 1.8rem; /* Larger title for bigger screens */
-  }
-
-  .custom-toolbar {
-    --padding-start: 20px; /* Increase padding on larger screens */
-    --padding-end: 20px;
-  }
-}
-
-  /* Default Styles Using the Palette */
-  .custom-toolbar {
-    background-color: var(--custom-header-bg);
-    color: var(--custom-header-text);
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .condensed-toolbar {
-    background-color: var(--custom-header-bg);
-    color: var(--custom-header-text);
-  }
-  
-  .custom-card {
-    background-color: var(--custom-card-bg);
-    color: var(--custom-card-text);
-    border: 1px solid var(--custom-border-color);
-    border-radius: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-metric {
-    color: var(--custom-card-metric);
-  }
-  
-  /* Table Styling */
-  .csv-data-table th,
-  .csv-data-table td {
-    border: 1px solid var(--custom-border-color);
-  }
-  
-  ion-page {
-    background-color: var(--custom-background);
-    color: var(--custom-text-color);
-  }
-  
