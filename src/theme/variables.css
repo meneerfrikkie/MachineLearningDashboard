@@ -28,6 +28,20 @@ http://ionicframework.com/docs/theming/ */
   /* Default text color */
   --custom-border-color: #ddd;
   /* Border color for tables and cards */
+
+  /* Main Header Styling */
+  .header-title {
+    font-size: 1.6rem;
+    font-weight: bold;
+    text-align: center;
+  }
+}
+
+/* Mobile Styling */
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 1.4rem;
+  }
 }
 
 /* Dark Mode Palette */
@@ -59,3 +73,4 @@ http://ionicframework.com/docs/theming/ */
     /* Darker border color for tables and cards */
   }
 }
+

@@ -24,7 +24,7 @@ import {
 } from '@ionic/react';
 import './Home.css';
 import WristPredictionAnimation from '../components/WristPredictionAnimation';
-import {analyticsOutline, fingerPrintOutline, filterOutline, constructOutline } from 'ionicons/icons'; // Icons used in the menu
+import { analyticsOutline, fingerPrintOutline, filterOutline } from 'ionicons/icons';
 import CircularChart from '../components/CircularChart';
 import Menu from './Menu';
 
@@ -43,7 +43,7 @@ const Home: React.FC = () => {
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">
-              <IonMenuButton />
+              <IonMenuButton autoHide={false}></IonMenuButton>
             </IonButtons>
             <IonTitle className="header-title">Dashboard</IonTitle>
           </IonToolbar>
@@ -57,58 +57,49 @@ const Home: React.FC = () => {
 
           <IonHeader collapse="condense">
             <IonToolbar className="condensed-toolbar">
-              <IonTitle size="large" className="condensed-title">Dashboard</IonTitle>
+              <IonTitle className="header-title">Dashboard</IonTitle>
             </IonToolbar>
           </IonHeader>
 
           <IonGrid>
             <IonRow>
-          
+
               <IonCol size="12" size-md="6">
-              <IonCard className="custom-card ml-model-card">
-    <IonCardHeader className="card-header">
-      <IonCardTitle>Machine Learning Model</IonCardTitle>
-    </IonCardHeader>
-    <IonCardContent>
-      <IonList>
-        {/* Classifier */}
-        <IonItem lines="none" className="model-item">
-          <IonIcon slot="start" icon={analyticsOutline} className="model-icon" />
-          <IonLabel>
-            <h2 className="detail-heading">Classifier</h2>
-            <p className="detail-description">Support Vector Machine (SVM)</p>
-          </IonLabel>
-        </IonItem>
+                <IonCard className="custom-card">
+                  <IonCardHeader className="card-header">
+                    <IonCardTitle className='card-title'>Machine Learning Model</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <IonList>
+                      {/* Classifier */}
+                      <IonItem lines="none" className="model-item">
+                        <IonIcon slot="start" icon={analyticsOutline} className="model-icon" />
+                        <IonLabel>
+                          <h2 className="detail-heading">Classifier</h2>
+                          <IonText className="detail-description">Linear Discriminant Analysis (LDA)</IonText>
+                        </IonLabel>
+                      </IonItem>
 
-        {/* Feature Extraction */}
-        <IonItem lines="none" className="model-item">
-          <IonIcon slot="start" icon={fingerPrintOutline} className="model-icon" />
-          <IonLabel>
-            <h2 className="detail-heading">Feature Extraction</h2>
-            <p className="detail-description">Principal Component Analysis (PCA)</p>
-          </IonLabel>
-        </IonItem>
+                      {/* Feature Extraction */}
+                      <IonItem lines="none" className="model-item">
+                        <IonIcon slot="start" icon={fingerPrintOutline} className="model-icon" />
+                        <IonLabel>
+                          <h2 className="detail-heading">Feature Extraction</h2>
+                          <IonText className="detail-description">Instantaneous Phase Difference (IPD)</IonText>
+                        </IonLabel>
+                      </IonItem>
 
-        {/* Feature Selection */}
-        <IonItem lines="none" className="model-item">
-          <IonIcon slot="start" icon={filterOutline} className="model-icon" />
-          <IonLabel>
-            <h2 className="detail-heading">Feature Selection</h2>
-            <p className="detail-description">Recursive Feature Elimination (RFE)</p>
-          </IonLabel>
-        </IonItem>
-
-        {/* Hyperparameter Tuning */}
-        <IonItem lines="none" className="model-item">
-          <IonIcon slot="start" icon={constructOutline} className="model-icon" />
-          <IonLabel>
-            <h2 className="detail-heading">Hyperparameter Tuning</h2>
-            <p className="detail-description">Grid Search with Cross Validation</p>
-          </IonLabel>
-        </IonItem>
-      </IonList>
-    </IonCardContent>
-  </IonCard>
+                      {/* Feature Selection */}
+                      <IonItem lines="none" className="model-item">
+                        <IonIcon slot="start" icon={filterOutline} className="model-icon" />
+                        <IonLabel>
+                          <h2 className="detail-heading">Feature Selection</h2>
+                          <IonText className="detail-description">Analysis of Variance (ANOVA)</IonText>
+                        </IonLabel>
+                      </IonItem>
+                    </IonList>
+                  </IonCardContent>
+                </IonCard>
 
                 {/* Wrist Prediction Animation */}
                 <WristPredictionAnimation />
@@ -121,9 +112,9 @@ const Home: React.FC = () => {
                     <IonCardTitle>Model Metrics</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
-                    <p className="metric-description">
+                    <IonText className="metric-description">
                       The model metrics provide an overview of the model's performance.
-                    </p>
+                    </IonText>
                     <IonGrid>
                       <IonRow className="metric-row">
                         <IonCol size="4">
@@ -131,7 +122,7 @@ const Home: React.FC = () => {
                         </IonCol>
                         <IonCol size="8">
                           <IonCardTitle>Accuracy</IonCardTitle>
-                          <p>Accuracy refers to the percentage of correct predictions out of all predictions made.</p>
+                          <IonText>Accuracy refers to the percentage of correct predictions out of all predictions made.</IonText>
                         </IonCol>
                       </IonRow>
                       <IonRow className="metric-row">
@@ -140,7 +131,7 @@ const Home: React.FC = () => {
                         </IonCol>
                         <IonCol size="8">
                           <IonCardTitle>Precision</IonCardTitle>
-                          <p>Precision is the percentage of true positive predictions among all positive predictions.</p>
+                          <IonText>Precision is the percentage of true positive predictions among all positive predictions.</IonText>
                         </IonCol>
                       </IonRow>
                       <IonRow className="metric-row">
@@ -149,7 +140,7 @@ const Home: React.FC = () => {
                         </IonCol>
                         <IonCol size="8">
                           <IonCardTitle>Recall</IonCardTitle>
-                          <p>Recall is the percentage of true positive predictions among all actual positive instances.</p>
+                          <IonText>Recall is the percentage of true positive predictions among all actual positive instances.</IonText>
                         </IonCol>
                       </IonRow>
                       <IonRow className="metric-row">
@@ -158,7 +149,7 @@ const Home: React.FC = () => {
                         </IonCol>
                         <IonCol size="8">
                           <IonCardTitle>F1 Score</IonCardTitle>
-                          <p>The F1 score is the harmonic mean of precision and recall, providing a balance between the two.</p>
+                          <IonText>The F1 score is the harmonic mean of precision and recall, providing a balance between the two.</IonText>
                         </IonCol>
                       </IonRow>
                     </IonGrid>
@@ -170,10 +161,7 @@ const Home: React.FC = () => {
 
           <IonGrid>
             <IonRow>
-              {/* Left Side: Wrist Animation Block */}
-              <IonCol size="12" size-md="6">
-                <WristPredictionAnimation />
-              </IonCol>
+              {/* Left Side*/}
 
               {/* Right Side: EEG Channels Image and Description in one card */}
               <IonCol size="12" size-md="6">

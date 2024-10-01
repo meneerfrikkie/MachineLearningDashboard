@@ -1,28 +1,15 @@
-/* Main Header Styling */
-.header-title {
-  font-size: 1.6rem;
-  font-weight: bold;
-  text-align: center;
-}
-
-/* Metric Card Styling */
-.metric-card {
-  text-align: left;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
-}
-
+/* Metric Styling */
 .metric-row {
   align-items: center;
   margin-bottom: 15px;
+  text-align: left;
 }
 
 .metric-description {
   font-size: 1rem;
   color: #6c757d;
   margin-bottom: 20px;
-  text-align: justify;
+  text-align: left;
 }
 
 /* Chart Column */
@@ -30,6 +17,7 @@
   text-align: center;
 }
 
+/* Custom Card Styling */
 .custom-card {
   text-align: center;
   border-radius: 10px;
@@ -37,6 +25,25 @@
   margin-bottom: 20px;
 }
 
+.card-header {
+  text-align: center;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+}
+
+.custom-card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease;
+}
+
+/* Image Styling */
 .image-wrapper {
   width: 100%;
   text-align: center;
@@ -49,56 +56,7 @@
   border-radius: 10px;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .header-title {
-    font-size: 1.4rem;
-  }
-
-  .metric-row {
-    flex-direction: column;
-  }
-
-  .chart-column,
-  .description-column {
-    text-align: center;
-  }
-
-  .metric-description {
-    text-align: justify;
-  }
-
-  .eeg-image {
-    width: 100%;
-  }
-}
-
 /* General Styling */
-.ion-page {
-  background-color: #f8f9fa;
-}
-
-.ion-toolbar {
-  --ion-background-color: #f8f9fa;
-  --ion-text-color: #333;
-}
-
-.custom-card:hover {
-  transform: translateY(-5px);
-  transition: transform 0.3s ease;
-}
-
-.condensed-toolbar {
-  background-color: #007BFF;
-  color: white;
-}
-
-.ml-model-card {
-  margin-bottom: 20px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-}
-
 .model-details-row {
   align-items: center;
   margin-bottom: 15px;
@@ -129,9 +87,23 @@
   margin: 5px 0 0;
 }
 
+/* Responsive Adjustments */
 @media (max-width: 768px) {
-  .ml-model-card {
-    margin-bottom: 15px;
+  .metric-row {
+    flex-direction: column;
+  }
+
+  .chart-column,
+  .description-column {
+    text-align: center;
+  }
+
+  .metric-description {
+    text-align: justify;
+  }
+
+  .eeg-image {
+    width: 100%;
   }
 
   .detail-icon {
