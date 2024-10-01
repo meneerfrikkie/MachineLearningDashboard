@@ -7,7 +7,7 @@
 
 .metric-description {
   font-size: 1rem;
-  color: #6c757d;
+  color: var(--custom-card-text);
   margin-bottom: 20px;
   text-align: left;
 }
@@ -23,10 +23,11 @@
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  background-color: var(--custom-card-bg);
 }
 
 .card-header {
-  text-align: center;
+  text-align: justify;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -34,15 +35,14 @@
 .card-title {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #333;
   margin: 10px 0;
+  color: var(--custom-header-text);
 }
 
 .custom-card:hover {
   transform: translateY(-5px);
   transition: transform 0.3s ease;
 }
-
 /* Image Styling */
 .image-wrapper {
   width: 100%;
@@ -57,34 +57,40 @@
 }
 
 /* General Styling */
-.model-details-row {
-  align-items: center;
+
+.model-details {
+  margin-bottom: 20px;
+}
+
+.model-item {
+  display: flex;
+  align-items: justify;
   margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 8px;
 }
 
-.detail-icon-col {
-  text-align: center;
-}
-
-.detail-icon {
+.model-icon {
   font-size: 2.5rem;
   color: #007BFF;
+  margin-right: 15px;
 }
 
-.detail-text-col {
+.model-info {
   text-align: left;
 }
 
 .detail-heading {
   font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
+  font-weight: extra-bold;
+  color: var(--custom-header-text);
+  text-align: justify;
 }
 
 .detail-description {
   font-size: 1rem;
-  color: #555;
-  margin: 5px 0 0;
+  color: var(--custom-card-text);
+  margin-top: 5px;
 }
 
 /* Responsive Adjustments */
@@ -106,15 +112,18 @@
     width: 100%;
   }
 
-  .detail-icon {
+  .model-item {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 15px;
+  }
+
+  .model-icon {
     font-size: 2rem;
+    margin-bottom: 10px;
   }
 
-  .detail-heading {
-    font-size: 1rem;
-  }
-
-  .detail-description {
-    font-size: 0.9rem;
+  .model-info {
+    text-align: center;
   }
 }

@@ -23,6 +23,7 @@ import {
   RefresherEventDetail,
 } from '@ionic/react';
 import './Home.css';
+import '../theme/variables.css';
 import WristPredictionAnimation from '../components/WristPredictionAnimation';
 import { analyticsOutline, fingerPrintOutline, filterOutline } from 'ionicons/icons';
 import CircularChart from '../components/CircularChart';
@@ -67,37 +68,37 @@ const Home: React.FC = () => {
               <IonCol size="12" size-md="6">
                 <IonCard className="custom-card">
                   <IonCardHeader className="card-header">
-                    <IonCardTitle className='card-title'>Machine Learning Model</IonCardTitle>
+                    <IonCardTitle className="card-title">Machine Learning Model</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
-                    <IonList>
+                    <div className="model-details">
                       {/* Classifier */}
-                      <IonItem lines="none" className="model-item">
-                        <IonIcon slot="start" icon={analyticsOutline} className="model-icon" />
-                        <IonLabel>
+                      <div className="model-item">
+                        <IonIcon icon={analyticsOutline} className="model-icon" />
+                        <div className="model-info">
                           <h2 className="detail-heading">Classifier</h2>
-                          <IonText className="detail-description">Linear Discriminant Analysis (LDA)</IonText>
-                        </IonLabel>
-                      </IonItem>
+                          <p className="detail-description">Linear Discriminant Analysis (LDA)</p>
+                        </div>
+                      </div>
 
                       {/* Feature Extraction */}
-                      <IonItem lines="none" className="model-item">
-                        <IonIcon slot="start" icon={fingerPrintOutline} className="model-icon" />
-                        <IonLabel>
+                      <div className="model-item">
+                        <IonIcon icon={fingerPrintOutline} className="model-icon" />
+                        <div className="model-info">
                           <h2 className="detail-heading">Feature Extraction</h2>
-                          <IonText className="detail-description">Instantaneous Phase Difference (IPD)</IonText>
-                        </IonLabel>
-                      </IonItem>
+                          <p className="detail-description">Instantaneous Phase Difference (IPD)</p>
+                        </div>
+                      </div>
 
                       {/* Feature Selection */}
-                      <IonItem lines="none" className="model-item">
-                        <IonIcon slot="start" icon={filterOutline} className="model-icon" />
-                        <IonLabel>
+                      <div className="model-item">
+                        <IonIcon icon={filterOutline} className="model-icon" />
+                        <div className="model-info">
                           <h2 className="detail-heading">Feature Selection</h2>
-                          <IonText className="detail-description">Analysis of Variance (ANOVA)</IonText>
-                        </IonLabel>
-                      </IonItem>
-                    </IonList>
+                          <p className="detail-description">Analysis of Variance (ANOVA)</p>
+                        </div>
+                      </div>
+                    </div>
                   </IonCardContent>
                 </IonCard>
 
@@ -108,8 +109,8 @@ const Home: React.FC = () => {
               {/* Model Metrics Card */}
               <IonCol size="12" size-md="6">
                 <IonCard className="custom-card">
-                  <IonCardHeader>
-                    <IonCardTitle>Model Metrics</IonCardTitle>
+                  <IonCardHeader className="card-header">
+                    <IonCardTitle className="card-title">Model Metrics</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
                     <IonText className="metric-description">
@@ -167,7 +168,7 @@ const Home: React.FC = () => {
               <IonCol size="12" size-md="6">
                 <IonCard className="custom-card">
                   <IonCardHeader className="card-header">
-                    <IonCardTitle>EEG Channels Used</IonCardTitle>
+                    <IonCardTitle className="card-title">EEG Channels Used</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
                     <div className="image-wrapper">

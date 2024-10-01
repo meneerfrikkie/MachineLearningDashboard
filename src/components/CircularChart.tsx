@@ -38,7 +38,7 @@ const CircularChart: React.FC<CircularChartProps> = ({ percentage }) => {
       options: {
         rotation: 0, // No rotation, for full circle
         circumference: 360, // Full circle (360 degrees)
-        cutout: '80%', // Makes it look like a ring
+        cutout: '85%', // Makes it look like a ring
         plugins: {
           tooltip: {
             enabled: false,
@@ -64,7 +64,7 @@ const CircularChart: React.FC<CircularChartProps> = ({ percentage }) => {
           transform: 'translate(-50%, -50%)',
           fontSize: '1.5em',
           fontWeight: 'bold',
-          color: '#4a4a4a',
+          color: 'var(--custom-header-text)',
         }}
       >
         {percentage}%

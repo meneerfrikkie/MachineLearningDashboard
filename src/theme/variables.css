@@ -16,7 +16,8 @@ http://ionicframework.com/docs/theming/ */
   /* Custom Colors */
   --custom-header-bg: #f8f9fa;
   --custom-header-text: #333;
-  --custom-card-bg: #ffffff;
+  --custom-card-bg: #fefefe;
+  
   /* #fdfdfd */
   --custom-card-text: #333;
   --custom-card-metric: #222;
@@ -27,8 +28,11 @@ http://ionicframework.com/docs/theming/ */
   --custom-text-color: #333;
   /* Default text color */
   --custom-border-color: #ddd;
-  /* Border color for tables and cards */
 
+}
+
+/* General Styling */
+:root {
   /* Main Header Styling */
   .header-title {
     font-size: 1.6rem;

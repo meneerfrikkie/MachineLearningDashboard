@@ -52,7 +52,7 @@ const WristPredictionAnimation: React.FC = () => {
   return (
     <IonCard className="custom-card">
       <IonCardHeader className="card-header">
-        <IonCardTitle>Live Model Prediction</IonCardTitle>
+        <IonCardTitle className="card-title">Live Model Prediction</IonCardTitle>
       </IonCardHeader>
       <IonCardContent>
         <IonRow className="prediction-row" style={{ textAlign: 'center' }}>
