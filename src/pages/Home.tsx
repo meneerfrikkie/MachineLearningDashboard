@@ -1,3 +1,4 @@
+import React from 'react';
 import {
   IonContent,
   IonHeader,
@@ -18,13 +19,44 @@ import {
   IonRefresher,
   IonRefresherContent,
   RefresherEventDetail,
+  IonMenu,
+  IonList,
+  IonItem,
+  IonLabel,
 } from '@ionic/react';
 import './Home.css';
 import '../theme/variables.css';
 import WristPredictionAnimation from '../components/WristPredictionAnimation';
-import { analyticsOutline, fingerPrintOutline, filterOutline } from 'ionicons/icons';
+import { analyticsOutline, fingerPrintOutline, filterOutline, homeOutline, statsChartOutline, pulseOutline } from 'ionicons/icons';
 import CircularChart from '../components/CircularChart';
-import Menu from './Menu';
+
+const Menu: React.FC = () => {
+  return (
+    <IonMenu contentId="main-content" side="start" menuId="main-menu">
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>Menu</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <IonList>
+          <IonItem button routerLink="/home">
+            <IonIcon slot="start" icon={homeOutline} />
+            <IonLabel>Dashboard</IonLabel>
+          </IonItem>
+          <IonItem button routerLink="/results">
+            <IonIcon slot="start" icon={statsChartOutline} />
+            <IonLabel>Results Table</IonLabel>
+          </IonItem>
+          <IonItem button routerLink="/interactive-model">
+            <IonIcon slot="start" icon={pulseOutline} />
+            <IonLabel>Interactive Model</IonLabel>
+          </IonItem>
+        </IonList>
+      </IonContent>
+    </IonMenu>
+  );
+};
 
 const Home: React.FC = () => {
   // Function to handle pull-to-refresh
@@ -37,9 +69,9 @@ const Home: React.FC = () => {
   return (
     <>
       <Menu />
-      <IonPage className="ion-page" id="main-content">
-        <IonHeader className='ion-header'>
-          <IonToolbar className='ion-toolbar'>
+      <IonPage id="main-content">
+        <IonHeader>
+          <IonToolbar>
             <IonButtons slot="start">
               <IonMenuButton autoHide={false}></IonMenuButton>
             </IonButtons>
@@ -53,15 +85,8 @@ const Home: React.FC = () => {
             <IonRefresherContent pullingText="Pull to refresh" refreshingSpinner="bubbles" />
           </IonRefresher>
 
-          <IonHeader collapse="condense">
-            <IonToolbar className="condensed-toolbar">
-              <IonTitle className="header-title">Dashboard</IonTitle>
-            </IonToolbar>
-          </IonHeader>
-
           <IonGrid>
             <IonRow>
-
               <IonCol size="12" size-md="6">
                 <IonCard className="custom-card">
                   <IonCardHeader className="card-header">
@@ -159,8 +184,6 @@ const Home: React.FC = () => {
 
           <IonGrid>
             <IonRow>
-              {/* Left Side*/}
-
               {/* Right Side: EEG Channels Image and Description in one card */}
               <IonCol size="12" size-md="6">
                 <IonCard className="custom-card">
@@ -179,7 +202,6 @@ const Home: React.FC = () => {
               </IonCol>
             </IonRow>
           </IonGrid>
-
         </IonContent>
       </IonPage>
     </>
