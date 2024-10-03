@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import {
     IonPage,
     IonContent,
@@ -18,10 +18,8 @@ import {
     IonButtons,
     IonMenuButton,
 } from '@ionic/react';
-import { motion } from 'framer-motion';
-import { happyOutline, sadOutline } from 'ionicons/icons'; // Add some icons for visual feedback
-import flexionVideo from '/videos/WristFlexion.mp4';
-import extensionVideo from '/videos/WristExtension.mp4';
+import flexionGif from '/images/WristFlexion.gif'; // Replace with the correct path to your flexion GIF
+import extensionGif from '/images/WristExtension.gif'; // Replace with the correct path to your extension GIF
 import eegSignalImage from '/images/EEGSignal.png';
 import './InteractiveModel.css';
 
@@ -38,18 +36,15 @@ const patients = [
 const WristPredictionPage: React.FC = () => {
     const [selectedPatient, setSelectedPatient] = useState<number | null>(null);
     const [predictionOutcome, setPredictionOutcome] = useState<string | null>(null);
-    const [predictedVideo, setPredictedVideo] = useState<string | null>(null);
+    const [visibleGif, setVisibleGif] = useState<'flexion' | 'extension' | null>(null);
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
-
-    // Video references for preloading
-    const flexionVideoRef = useRef<HTMLVideoElement>(null);
-    const extensionVideoRef = useRef<HTMLVideoElement>(null);
+    const [processing, setProcessing] = useState(false);
 
     // Handle patient selection
     const handleSelectPatient = (patientId: number) => {
         setSelectedPatient(patientId);
         setPredictionOutcome(null); // Clear any previous prediction result
-        setPredictedVideo(null); // Clear previous video
+        setVisibleGif(null); // Clear the visibility of GIFs
         setButtonsDisabled(false); // Enable buttons when a patient is selected
     };
 
@@ -60,30 +55,33 @@ const WristPredictionPage: React.FC = () => {
         const patient = patients.find((p) => p.id === selectedPatient);
         if (!patient) return;
 
-        // Calculate if the prediction is correct based on the patient's accuracy
-        const isCorrect = Math.random() * 100 < patient.accuracy;
-        const correctMovement = Math.random() > 0.5 ? 'flexion' : 'extension';
-
-        if (isCorrect) {
-            setPredictionOutcome('Correct! 🎉');
-            setPredictedVideo(userChoice === correctMovement ? (userChoice === 'flexion' ? flexionVideo : extensionVideo) : null);
-        } else {
-            setPredictionOutcome('Incorrect 😔');
-            setPredictedVideo(userChoice === 'flexion' ? extensionVideo : flexionVideo);
-        }
-
-        // Disable buttons while video is playing
+        // Show processing animation
+        setProcessing(true);
+        setPredictionOutcome(null);
+        setVisibleGif(null);
         setButtonsDisabled(true);
 
-        // Ensure buttons are re-enabled after the video is done playing or after a maximum of 10 seconds
+        // Simulate processing delay
         setTimeout(() => {
-            setButtonsDisabled(false);
-        }, 5000); // Fallback timeout of 10 seconds
-    };
+            setProcessing(false);
 
-    // Handler for video end to re-enable buttons
-    const handleVideoEnded = () => {
-        setButtonsDisabled(false);
+            // Calculate if the prediction is correct based on the patient's accuracy
+            const isCorrect = Math.random() * 100 < patient.accuracy;
+            const correctMovement = Math.random() > 0.5 ? 'flexion' : 'extension';
+
+            if (isCorrect) {
+                setPredictionOutcome('Correct! 🎉');
+                setVisibleGif(userChoice === correctMovement ? userChoice : correctMovement);
+            } else {
+                setPredictionOutcome('Incorrect 😔');
+                setVisibleGif(userChoice === 'flexion' ? 'extension' : 'flexion');
+            }
+
+            // Re-enable buttons after showing the result
+            setTimeout(() => {
+                setButtonsDisabled(false);
+            }, 5000);
+        }, 3000); // Processing animation for 3 seconds
     };
 
     return (
@@ -101,141 +99,124 @@ const WristPredictionPage: React.FC = () => {
                 <IonRow>
                     {/* Mini Left Cover with Controls and EEG Image */}
                     <IonCol size="12" size-md="4" className="left-cover">
-                        <motion.div
-                            initial={{ x: -100, opacity: 0 }}
-                            animate={{ x: 0, opacity: 1 }}
-                            transition={{ duration: 0.5 }}
-                        >
-                            <IonCard className="patient-selection-card">
-                                <IonCardHeader>
-                                    <IonCardTitle>Select a Patient 🧑‍⚕️</IonCardTitle>
-                                </IonCardHeader>
-                                <IonCardContent>
-                                    <IonSelect
-                                        placeholder="Select Patient"
-                                        onIonChange={(e: CustomEvent) => handleSelectPatient(e.detail.value)}
-                                    >
-                                        {patients.map((patient) => (
-                                            <IonSelectOption key={patient.id} value={patient.id}>
-                                                {patient.name}
-                                            </IonSelectOption>
-                                        ))}
-                                    </IonSelect>
-                                </IonCardContent>
-                            </IonCard>
+                        <IonCard className="patient-selection-card">
+                            <IonCardHeader>
+                                <IonCardTitle>Select a Patient 🧑‍⚕️</IonCardTitle>
+                            </IonCardHeader>
+                            <IonCardContent>
+                                <IonSelect
+                                    placeholder="Select Patient"
+                                    onIonChange={(e: CustomEvent) => handleSelectPatient(e.detail.value)}
+                                    value={selectedPatient}
+                                >
+                                    {patients.map((patient) => (
+                                        <IonSelectOption key={patient.id} value={patient.id}>
+                                            {patient.name}
+                                        </IonSelectOption>
+                                    ))}
+                                </IonSelect>
+                            </IonCardContent>
+                        </IonCard>
 
-                            {selectedPatient && (
-                                <>
-                                    {/* Display Selected Patient's Accuracy */}
-                                    <IonCard className="accuracy-card">
-                                        <IonCardHeader>
-                                            <IonCardTitle>Model Accuracy 📊</IonCardTitle>
-                                        </IonCardHeader>
-                                        <IonCardContent>
-                                            <IonText>
-                                                Accuracy for {patients.find((p) => p.id === selectedPatient)?.name}:{" "}
-                                                {patients.find((p) => p.id === selectedPatient)?.accuracy}%
-                                            </IonText>
-                                        </IonCardContent>
-                                    </IonCard>
+                        {/* Display Selected Patient's Accuracy */}
+                        <IonCard className="accuracy-card">
+                            <IonCardHeader>
+                                <IonCardTitle>Model Accuracy 📊</IonCardTitle>
+                            </IonCardHeader>
+                            <IonCardContent>
+                                <IonText>
+                                    {selectedPatient !== null ? (
+                                        `Accuracy for ${patients.find((p) => p.id === selectedPatient)?.name}: ${
+                                            patients.find((p) => p.id === selectedPatient)?.accuracy
+                                        }%`
+                                    ) : (
+                                        "Select a patient to see the accuracy"
+                                    )}
+                                </IonText>
+                            </IonCardContent>
+                        </IonCard>
 
-                                    {/* EEG Signal Image */}
-                                    <IonCard className="eeg-image-card">
-                                        <IonCardHeader>
-                                            <IonCardTitle>EEG Signal 📈</IonCardTitle>
-                                        </IonCardHeader>
-                                        <IonCardContent>
-                                            <img
-                                                src={eegSignalImage}
-                                                alt="EEG Signal"
-                                                className="eeg-signal-image"
-                                            />
-                                        </IonCardContent>
-                                    </IonCard>
-                                </>
-                            )}
-                        </motion.div>
+                        {/* EEG Signal Image */}
+                        <IonCard className="eeg-image-card">
+                            <IonCardHeader>
+                                <IonCardTitle>EEG Signal 📈</IonCardTitle>
+                            </IonCardHeader>
+                            <IonCardContent>
+                                <img
+                                    src={eegSignalImage}
+                                    alt="EEG Signal"
+                                    className="eeg-signal-image"
+                                />
+                            </IonCardContent>
+                        </IonCard>
                     </IonCol>
 
                     {/* Right Cover Box with Output */}
                     <IonCol size="12" size-md="8" className="right-cover">
-                        {selectedPatient && (
-                            <>
-                                {/* User Choice - Flexion or Extension */}
-                                <motion.div
-                                    initial={{ x: 100, opacity: 0 }}
-                                    animate={{ x: 0, opacity: 1 }}
-                                    transition={{ duration: 0.5 }}
-                                >
-                                    <IonCard className="prediction-card">
-                                        <IonCardHeader>
-                                            <IonCardTitle>Make a Prediction 🤔</IonCardTitle>
-                                        </IonCardHeader>
-                                        <IonCardContent>
-                                            <IonRow>
-                                                <IonCol size="6">
-                                                    <IonButton
-                                                        expand="block"
-                                                        color="tertiary"
-                                                        onClick={() => handlePrediction('flexion')}
-                                                        disabled={buttonsDisabled}
-                                                    >
-                                                        Flexion 🖐️
-                                                    </IonButton>
-                                                </IonCol>
-                                                <IonCol size="6">
-                                                    <IonButton
-                                                        expand="block"
-                                                        color="secondary"
-                                                        onClick={() => handlePrediction('extension')}
-                                                        disabled={buttonsDisabled}
-                                                    >
-                                                        Extension ✊
-                                                    </IonButton>
-                                                </IonCol>
-                                            </IonRow>
-                                        </IonCardContent>
-                                    </IonCard>
-                                </motion.div>
+                        {/* User Choice - Flexion or Extension */}
+                        <IonCard className="prediction-card">
+                            <IonCardHeader>
+                                <IonCardTitle>Make a Prediction 🤔</IonCardTitle>
+                            </IonCardHeader>
+                            <IonCardContent>
+                                <IonRow>
+                                    <IonCol size="6">
+                                        <IonButton
+                                            expand="block"
+                                            color="tertiary"
+                                            onClick={() => handlePrediction('flexion')}
+                                            disabled={buttonsDisabled || selectedPatient === null}
+                                        >
+                                            Flexion 🖐️
+                                        </IonButton>
+                                    </IonCol>
+                                    <IonCol size="6">
+                                        <IonButton
+                                            expand="block"
+                                            color="secondary"
+                                            onClick={() => handlePrediction('extension')}
+                                            disabled={buttonsDisabled || selectedPatient === null}
+                                        >
+                                            Extension ✊
+                                        </IonButton>
+                                    </IonCol>
+                                </IonRow>
+                            </IonCardContent>
+                        </IonCard>
 
-                                {/* Prediction Outcome and Video */}
-                                {predictionOutcome && (
-                                    <motion.div
-                                        className="prediction-outcome"
-                                        initial={{ scale: 0.8, opacity: 0 }}
-                                        animate={{ scale: [0.8, 1.2, 1], opacity: [0, 1] }}
-                                        transition={{ duration: 0.5 }}
-                                    >
-                                        <IonCard className={`outcome-card ${predictionOutcome.includes('Correct') ? 'success' : 'error'}`}>
-                                            <IonCardContent>
-                                                <IonText>
-                                                    <h2>{predictionOutcome}</h2>
-                                                </IonText>
-                                                {predictedVideo && (
-                                                    <video
-                                                        src={predictedVideo}
-                                                        autoPlay
-                                                        onEnded={handleVideoEnded}
-                                                        muted
-                                                        playsInline
-                                                        className="prediction-video"
-                                                        preload="auto" // Preload video for faster play
-                                                    >
-                                                        Your browser does not support the video tag.
-                                                    </video>
-                                                )}
-                                            </IonCardContent>
-                                        </IonCard>
-                                    </motion.div>
-                                )}
-                            </>
+                        {/* Processing Animation */}
+                        {processing && (
+                            <IonCard className="processing-card">
+                                <IonCardContent>
+                                    <IonText className="processing-text">Processing...</IonText>
+                                </IonCardContent>
+                            </IonCard>
+                        )}
+
+                        {/* Prediction Outcome and GIFs */}
+                        {!processing && (
+                            <IonCard className={`outcome-card ${predictionOutcome?.includes('Correct') ? 'success' : 'error'}`}>
+                                <IonCardContent>
+                                    <IonText>
+                                        <h2>{predictionOutcome ? predictionOutcome : "Make a prediction to see the outcome"}</h2>
+                                    </IonText>
+                                    <div className="gif-container">
+                                        <img
+                                            src={flexionGif}
+                                            alt="Flexion Movement"
+                                            className={`prediction-gif ${visibleGif === 'flexion' ? 'visible' : 'hidden'}`}
+                                        />
+                                        <img
+                                            src={extensionGif}
+                                            alt="Extension Movement"
+                                            className={`prediction-gif ${visibleGif === 'extension' ? 'visible' : 'hidden'}`}
+                                        />
+                                    </div>
+                                </IonCardContent>
+                            </IonCard>
                         )}
                     </IonCol>
                 </IonRow>
-
-                {/* Preloaded videos (hidden) */}
-                <video ref={flexionVideoRef} src={flexionVideo} preload="auto" style={{ display: 'none' }} />
-                <video ref={extensionVideoRef} src={extensionVideo} preload="auto" style={{ display: 'none' }} />
             </IonContent>
         </IonPage>
     );

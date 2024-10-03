@@ -59,3 +59,30 @@
     max-width: 100%;
   }
 }
+
+.processing-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #007bff;
+  text-align: center;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.prediction-gif {
+  width: 100%;
+  height: auto;
+  display: none; /* Default to hidden */
+}
+
+.prediction-gif.visible {
+  display: block; /* Show when marked as visible */
+}
+
+.prediction-gif.hidden {
+  display: none; /* Hide when marked as hidden */
+}
