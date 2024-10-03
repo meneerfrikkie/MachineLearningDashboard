@@ -19,15 +19,11 @@ import {
   IonRefresher,
   IonRefresherContent,
   RefresherEventDetail,
-  IonMenu,
-  IonList,
-  IonItem,
-  IonLabel,
 } from '@ionic/react';
 import './Home.css';
 import '../theme/variables.css';
 import WristPredictionAnimation from '../components/WristPredictionAnimation';
-import { analyticsOutline, fingerPrintOutline, filterOutline, homeOutline, statsChartOutline, pulseOutline } from 'ionicons/icons';
+import { analyticsOutline, fingerPrintOutline, filterOutline } from 'ionicons/icons';
 import CircularChart from '../components/CircularChart';
 import { motion } from 'framer-motion';
 import Menu from './Menu';
@@ -78,7 +74,7 @@ const Home: React.FC = () => {
                           <IonIcon icon={analyticsOutline} className="model-icon" />
                           <div className="model-info">
                             <h2 className="detail-heading">Classifier 🎯</h2>
-                            <p className="metric-description">Linear Discriminant Analysis (LDA)</p>
+                            <p className="metric-description">Support Vector Machine (SVM)</p>
                           </div>
                         </div>
 
@@ -87,7 +83,7 @@ const Home: React.FC = () => {
                           <IonIcon icon={fingerPrintOutline} className="model-icon" />
                           <div className="model-info">
                             <h2 className="detail-heading">Feature Extraction 🔍</h2>
-                            <p className="detail-description">Instantaneous Phase Difference (IPD)</p>
+                            <p className="detail-description">Phase-Locked Value (PLV)</p>
                           </div>
                         </div>
 
@@ -154,7 +150,7 @@ const Home: React.FC = () => {
                       <IonGrid>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={77.29} />
+                            <CircularChart percentage={85.29} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>Accuracy 🎯</IonCardTitle>
@@ -165,7 +161,7 @@ const Home: React.FC = () => {
                         </IonRow>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={78.29} />
+                            <CircularChart percentage={86.19} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>Precision ⚙️</IonCardTitle>
@@ -176,7 +172,7 @@ const Home: React.FC = () => {
                         </IonRow>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={77.23} />
+                            <CircularChart percentage={85.23} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>Recall 🔍</IonCardTitle>
@@ -187,7 +183,7 @@ const Home: React.FC = () => {
                         </IonRow>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={77.01} />
+                            <CircularChart percentage={85.10} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>F1 Score ⚖️</IonCardTitle>
@@ -201,12 +197,6 @@ const Home: React.FC = () => {
                   </IonCard>
                 </motion.div>
               </IonCol>
-            </IonRow>
-          </IonGrid>
-
-          <IonGrid>
-            <IonRow>
-              
             </IonRow>
           </IonGrid>
         </IonContent>
