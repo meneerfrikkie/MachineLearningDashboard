@@ -70,10 +70,10 @@ const WristPredictionPage: React.FC = () => {
             let outcomeGif: 'flexion' | 'extension';
 
             if (isCorrect) {
-                setPredictionOutcome('Correct! 🎉');
+                setPredictionOutcome(`You expected ${userChoice.toUpperCase()} and our prediction was... Correct! 🎉`);
                 outcomeGif = userChoice; // Show the user's chosen movement when correct
             } else {
-                setPredictionOutcome('Incorrect 😔');
+                setPredictionOutcome(`You expected ${userChoice.toUpperCase()} but our prediction was... Incorrect 😔`);
                 outcomeGif = userChoice === 'flexion' ? 'extension' : 'flexion'; // Show the opposite movement when incorrect
             }
 
@@ -98,10 +98,10 @@ const WristPredictionPage: React.FC = () => {
                 </IonToolbar>
             </IonHeader>
 
-            <IonContent className="ion-padding">
-                <IonRow>
+            <IonContent className="ion-padding interactive-model-content">
+                <IonRow className="full-height">
                     {/* Mini Left Cover with Controls and EEG Image */}
-                    <IonCol size="12" size-md="4" className="left-cover">
+                    <IonCol size="12" size-md="4" className="left-cover full-height">
                         <IonCard className="patient-selection-card">
                             <IonCardHeader>
                                 <IonCardTitle>Select a Patient 🧑‍⚕️</IonCardTitle>
@@ -155,7 +155,7 @@ const WristPredictionPage: React.FC = () => {
                     </IonCol>
 
                     {/* Right Cover Box with Output */}
-                    <IonCol size="12" size-md="8" className="right-cover">
+                    <IonCol size="12" size-md="8" className="right-cover full-height">
                         {/* User Choice - Flexion or Extension */}
                         <IonCard className="prediction-card">
                             <IonCardHeader>
@@ -169,6 +169,7 @@ const WristPredictionPage: React.FC = () => {
                                             color="tertiary"
                                             onClick={() => handlePrediction('flexion')}
                                             disabled={buttonsDisabled || selectedPatient === null}
+                                            className="prediction-button"
                                         >
                                             Flexion 🖐️
                                         </IonButton>
@@ -179,6 +180,7 @@ const WristPredictionPage: React.FC = () => {
                                             color="secondary"
                                             onClick={() => handlePrediction('extension')}
                                             disabled={buttonsDisabled || selectedPatient === null}
+                                            className="prediction-button"
                                         >
                                             Extension ✊
                                         </IonButton>
@@ -191,16 +193,16 @@ const WristPredictionPage: React.FC = () => {
                         {processing && (
                             <IonCard className="processing-card">
                                 <IonCardContent>
-                                    <IonText className="processing-text">Processing...</IonText>
+                                    <IonText className="processing-text">Processing... 🤖</IonText>
                                 </IonCardContent>
                             </IonCard>
                         )}
 
                         {/* Prediction Outcome and GIF */}
                         {!processing && (
-                            <IonCard className={`outcome-card ${predictionOutcome?.includes('Correct') ? 'success' : 'error'}`}>
+                            <IonCard className="outcome-card">
                                 <IonCardContent>
-                                    <IonText>
+                                    <IonText className={`outcome-text ${predictionOutcome?.includes('Correct') ? 'success' : 'error'}`}>
                                         <h2>{predictionOutcome ? predictionOutcome : "Make a prediction to see the outcome"}</h2>
                                     </IonText>
                                     {visibleGif && (
