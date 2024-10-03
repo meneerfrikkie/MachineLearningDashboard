@@ -112,6 +112,28 @@ const Home: React.FC = () => {
                 >
                   <WristPredictionAnimation />
                 </motion.div>
+
+                {/* EEG Channels Image and Description in one card */}
+                <motion.div
+                  initial={{ y: -100, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <IonCard className="custom-card playful-card">
+                    <IonCardHeader className="card-header">
+                      <IonCardTitle className="card-title">EEG Channels Used 🧠</IonCardTitle>
+                    </IonCardHeader>
+                    <IonCardContent>
+                      <div className="image-wrapper">
+                        <img src="./images/ChannelPair2.png" alt="EEG Channels Used" className="eeg-image" />
+                      </div>
+                      <IonText>
+                        We use various EEG channels to understand brain activity better. Channels x, y, and z help us
+                        capture the coolest brain waves!
+                      </IonText>
+                    </IonCardContent>
+                  </IonCard>
+                </motion.div>
               </IonCol>
 
               {/* Model Metrics Card */}
@@ -134,9 +156,9 @@ const Home: React.FC = () => {
                           <IonCol size="4">
                             <CircularChart percentage={77.29} />
                           </IonCol>
-                          <IonCol size="8">
+                          <IonCol size="12">
                             <IonCardTitle>Accuracy 🎯</IonCardTitle>
-                            <IonText>
+                            <IonText className="metric-description">
                               Accuracy refers to the percentage of correct predictions out of all predictions made.
                             </IonText>
                           </IonCol>
@@ -145,9 +167,9 @@ const Home: React.FC = () => {
                           <IonCol size="4">
                             <CircularChart percentage={78.29} />
                           </IonCol>
-                          <IonCol size="8">
+                          <IonCol size="12">
                             <IonCardTitle>Precision ⚙️</IonCardTitle>
-                            <IonText>
+                            <IonText className="metric-description">
                               Precision is the percentage of true positive predictions among all positive predictions.
                             </IonText>
                           </IonCol>
@@ -156,9 +178,9 @@ const Home: React.FC = () => {
                           <IonCol size="4">
                             <CircularChart percentage={77.23} />
                           </IonCol>
-                          <IonCol size="8">
+                          <IonCol size="12">
                             <IonCardTitle>Recall 🔍</IonCardTitle>
-                            <IonText>
+                            <IonText className="metric-description">
                               Recall is the percentage of true positive predictions among all actual positive instances.
                             </IonText>
                           </IonCol>
@@ -167,9 +189,9 @@ const Home: React.FC = () => {
                           <IonCol size="4">
                             <CircularChart percentage={77.01} />
                           </IonCol>
-                          <IonCol size="8">
+                          <IonCol size="12">
                             <IonCardTitle>F1 Score ⚖️</IonCardTitle>
-                            <IonText>
+                            <IonText className="metric-description">
                               The F1 score is the harmonic mean of precision and recall, providing a balance between the two.
                             </IonText>
                           </IonCol>
@@ -184,29 +206,7 @@ const Home: React.FC = () => {
 
           <IonGrid>
             <IonRow>
-              {/* Right Side: EEG Channels Image and Description in one card */}
-              <IonCol size="12" size-md="6">
-                <motion.div
-                  initial={{ y: -100, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <IonCard className="custom-card playful-card">
-                    <IonCardHeader className="card-header">
-                      <IonCardTitle className="card-title">EEG Channels Used 🧠</IonCardTitle>
-                    </IonCardHeader>
-                    <IonCardContent>
-                      <div className="image-wrapper">
-                        <img src="./images/ChannelPair2.png" alt="EEG Channels Used" className="eeg-image" />
-                      </div>
-                      <IonText>
-                        We use various EEG channels to understand brain activity better. Channels x, y, and z help us
-                        capture the coolest brain waves!
-                      </IonText>
-                    </IonCardContent>
-                  </IonCard>
-                </motion.div>
-              </IonCol>
+              
             </IonRow>
           </IonGrid>
         </IonContent>
