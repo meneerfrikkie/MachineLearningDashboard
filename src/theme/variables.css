@@ -78,3 +78,23 @@ http://ionicframework.com/docs/theming/ */
   }
 }
 
+:root {
+  /* Light mode colors */
+  --color-success-bg: #e0ffe0; /* Light green background for correct prediction */
+  --color-success-text: #007f00; /* Dark green text for correct prediction */
+
+  --color-error-bg: #ffe0e0; /* Light red background for incorrect prediction */
+  --color-error-text: #7f0000; /* Dark red text for incorrect prediction */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark mode colors */
+    --color-success-bg: #1e3a1e; /* Dark green background for correct prediction */
+    --color-success-text: #a5e6a5; /* Light green text for correct prediction */
+
+    --color-error-bg: #3a1e1e; /* Dark red background for incorrect prediction */
+    --color-error-text: #f5a5a5; /* Light red text for incorrect prediction */
+  }
+}
+

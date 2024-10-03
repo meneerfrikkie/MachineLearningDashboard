@@ -28,9 +28,17 @@ const patients = [
     { id: 1, name: 'Patient 1', accuracy: 77 },
     { id: 2, name: 'Patient 2', accuracy: 81 },
     { id: 3, name: 'Patient 3', accuracy: 74 },
-    { id: 4, name: 'Patient 4', accuracy: 76.67 },
+    { id: 4, name: 'Patient 4', accuracy: 76.67},
     { id: 5, name: 'Patient 5', accuracy: 84.04 },
-    // Add more patients here if needed
+    { id: 6, name: 'Patient 6', accuracy: 82.5 },
+    { id: 7, name: 'Patient 7', accuracy: 76.5 },
+    { id: 8, name: 'Patient 8', accuracy: 86.97 },
+    { id: 9, name: 'Patient 9', accuracy: 81.26 },
+    { id: 10, name: 'Patient 10', accuracy: 74 },
+    { id: 11, name: 'Patient 11', accuracy: 72.26 },
+    { id: 12, name: 'Patient 12', accuracy: 76 },
+    { id: 13, name: 'Patient 13', accuracy: 78 },
+    { id: 14, name: 'Patient 14', accuracy: 80.5 },
 ];
 
 const WristPredictionPage: React.FC = () => {
@@ -70,10 +78,10 @@ const WristPredictionPage: React.FC = () => {
             let outcomeGif: 'flexion' | 'extension';
 
             if (isCorrect) {
-                setPredictionOutcome(`You expected ${userChoice.toUpperCase()} and our prediction was... Correct! 🎉`);
+                setPredictionOutcome(`You expected wrist ${userChoice} and our prediction was... Correct! 🎉`);
                 outcomeGif = userChoice; // Show the user's chosen movement when correct
             } else {
-                setPredictionOutcome(`You expected ${userChoice.toUpperCase()} but our prediction was... Incorrect 😔`);
+                setPredictionOutcome(`You expected wrist ${userChoice} but our prediction was... Incorrect 😔`);
                 outcomeGif = userChoice === 'flexion' ? 'extension' : 'flexion'; // Show the opposite movement when incorrect
             }
 
@@ -155,67 +163,68 @@ const WristPredictionPage: React.FC = () => {
                     </IonCol>
 
                     {/* Right Cover Box with Output */}
-                    <IonCol size="12" size-md="8" className="right-cover full-height">
-                        {/* User Choice - Flexion or Extension */}
-                        <IonCard className="prediction-card">
-                            <IonCardHeader>
-                                <IonCardTitle>Make a Prediction 🤔</IonCardTitle>
-                            </IonCardHeader>
-                            <IonCardContent>
-                                <IonRow>
-                                    <IonCol size="6">
-                                        <IonButton
-                                            expand="block"
-                                            color="tertiary"
-                                            onClick={() => handlePrediction('flexion')}
-                                            disabled={buttonsDisabled || selectedPatient === null}
-                                            className="prediction-button"
-                                        >
-                                            Flexion 🖐️
-                                        </IonButton>
-                                    </IonCol>
-                                    <IonCol size="6">
-                                        <IonButton
-                                            expand="block"
-                                            color="secondary"
-                                            onClick={() => handlePrediction('extension')}
-                                            disabled={buttonsDisabled || selectedPatient === null}
-                                            className="prediction-button"
-                                        >
-                                            Extension ✊
-                                        </IonButton>
-                                    </IonCol>
-                                </IonRow>
-                            </IonCardContent>
-                        </IonCard>
+                    {/* Right Cover Box with Output */}
+<IonCol size="12" size-md="8" className="right-cover full-height">
+    {/* User Choice - Flexion or Extension */}
+    <IonCard className="prediction-card">
+        <IonCardHeader>
+            <IonCardTitle>Make a Prediction 🤔</IonCardTitle>
+        </IonCardHeader>
+        <IonCardContent>
+            <IonRow>
+                <IonCol size="6">
+                    <IonButton
+                        expand="block"
+                        color="tertiary"
+                        onClick={() => handlePrediction('flexion')}
+                        disabled={buttonsDisabled || selectedPatient === null}
+                        className="prediction-button"
+                    >
+                        Flexion 🖐️
+                    </IonButton>
+                </IonCol>
+                <IonCol size="6">
+                    <IonButton
+                        expand="block"
+                        color="secondary"
+                        onClick={() => handlePrediction('extension')}
+                        disabled={buttonsDisabled || selectedPatient === null}
+                        className="prediction-button"
+                    >
+                        Extension ✊
+                    </IonButton>
+                </IonCol>
+            </IonRow>
+        </IonCardContent>
+    </IonCard>
 
-                        {/* Processing Animation */}
-                        {processing && (
-                            <IonCard className="processing-card">
-                                <IonCardContent>
-                                    <IonText className="processing-text">Processing... 🤖</IonText>
-                                </IonCardContent>
-                            </IonCard>
-                        )}
+    {/* Processing Animation */}
+    {processing && (
+        <IonCard className="processing-card">
+            <IonCardContent>
+                <IonText className="processing-text">Processing... 🤖</IonText>
+            </IonCardContent>
+        </IonCard>
+    )}
 
-                        {/* Prediction Outcome and GIF */}
-                        {!processing && (
-                            <IonCard className="outcome-card">
-                                <IonCardContent>
-                                    <IonText className={`outcome-text ${predictionOutcome?.includes('Correct') ? 'success' : 'error'}`}>
-                                        <h2>{predictionOutcome ? predictionOutcome : "Make a prediction to see the outcome"}</h2>
-                                    </IonText>
-                                    {visibleGif && (
-                                        <img
-                                            src={visibleGif === 'flexion' ? flexionGif : extensionGif}
-                                            alt={visibleGif === 'flexion' ? "Flexion Movement" : "Extension Movement"}
-                                            className="prediction-gif"
-                                        />
-                                    )}
-                                </IonCardContent>
-                            </IonCard>
-                        )}
-                    </IonCol>
+    {/* Prediction Outcome and GIF */}
+    {!processing && (
+        <IonCard className={`outcome-card ${predictionOutcome?.includes('Correct') ? 'success' : 'error'}`}>
+            <IonCardContent>
+                <IonText className={`outcome-text ${predictionOutcome?.includes('Correct') ? 'success' : 'error'}`}>
+                    <h2>{predictionOutcome ? predictionOutcome : "Make a prediction to see the outcome"}</h2>
+                </IonText>
+                {visibleGif && (
+                    <img
+                        src={visibleGif === 'flexion' ? flexionGif : extensionGif}
+                        alt={visibleGif === 'flexion' ? "Flexion Movement" : "Extension Movement"}
+                        className="prediction-gif"
+                    />
+                )}
+            </IonCardContent>
+        </IonCard>
+    )}
+</IonCol>
                 </IonRow>
             </IonContent>
         </IonPage>

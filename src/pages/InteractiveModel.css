@@ -17,7 +17,21 @@
   margin-top: 20px;
   padding: 20px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: white;
+  background-color: var(--custom-background);
+}
+
+.outcome-card.success {
+  background-color: var(--color-success-bg);
+  color: var(--color-success-text);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.outcome-card.error {
+  background-color: var(--color-error-bg);
+  color: var(--color-error-text);
+  padding: 10px;
+  border-radius: 10px;
 }
 
 /* Processing Card Styling */
