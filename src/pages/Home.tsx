@@ -14,9 +14,6 @@ import {
   IonButtons,
   IonMenuButton,
   IonText,
-  IonList,
-  IonLabel,
-  IonItem,
   IonIcon,
   IonRefresher,
   IonRefresherContent,
@@ -41,8 +38,8 @@ const Home: React.FC = () => {
     <>
       <Menu />
       <IonPage className="ion-page" id="main-content">
-        <IonHeader>
-          <IonToolbar>
+        <IonHeader className='ion-header'>
+          <IonToolbar className='ion-toolbar'>
             <IonButtons slot="start">
               <IonMenuButton autoHide={false}></IonMenuButton>
             </IonButtons>

@@ -1,3 +1,32 @@
+/* Make the header seamless */
+.ion-header { /* Make header background transparent to blend into the page */
+  border-bottom: none;        /* Remove any default border at the bottom of the header */
+  box-shadow: none;           /* Remove shadow to avoid separation between header and page content */
+}
+
+.ion-toolbar {
+  border-bottom: none;        /* Remove the bottom border for a seamless transition */
+  box-shadow: none;           /* Remove shadow to integrate with the rest of the content */
+  padding: 0;                 /* Remove default padding to align content flush with the rest of the page */
+}
+
+/* Styling the Menu Button */
+ion-menu-button {
+  --color: var(--custom-header-icon, #5e5e5e); /* Set icon color to blend or contrast appropriately */
+  margin-left: 15px;            /* Space between the menu button and the screen edge */
+}
+
+@media (max-width: 768px) {
+  /* Adjustments for smaller screens */
+  .header-title {
+    font-size: 1.2rem;           /* Slightly smaller title for mobile view */
+  }
+
+  ion-menu-button {
+    margin-left: 10px;           /* Reduce margin for smaller screens */
+  }
+}
+
 /* Metric Styling */
 .metric-row {
   align-items: center;
