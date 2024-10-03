@@ -30,34 +30,7 @@ import WristPredictionAnimation from '../components/WristPredictionAnimation';
 import { analyticsOutline, fingerPrintOutline, filterOutline, homeOutline, statsChartOutline, pulseOutline } from 'ionicons/icons';
 import CircularChart from '../components/CircularChart';
 import { motion } from 'framer-motion';
-
-const Menu: React.FC = () => {
-  return (
-    <IonMenu contentId="main-content" side="start" menuId="main-menu">
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Menu 🍔</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent>
-        <IonList>
-          <IonItem button routerLink="/home">
-            <IonIcon slot="start" icon={homeOutline} />
-            <IonLabel>Dashboard 📊</IonLabel>
-          </IonItem>
-          <IonItem button routerLink="/results">
-            <IonIcon slot="start" icon={statsChartOutline} />
-            <IonLabel>Results Table 📋</IonLabel>
-          </IonItem>
-          <IonItem button routerLink="/interactive-model">
-            <IonIcon slot="start" icon={pulseOutline} />
-            <IonLabel>Interactive Model 🤖</IonLabel>
-          </IonItem>
-        </IonList>
-      </IonContent>
-    </IonMenu>
-  );
-};
+import Menu from './Menu';
 
 const Home: React.FC = () => {
   // Function to handle pull-to-refresh
@@ -105,7 +78,7 @@ const Home: React.FC = () => {
                           <IonIcon icon={analyticsOutline} className="model-icon" />
                           <div className="model-info">
                             <h2 className="detail-heading">Classifier 🎯</h2>
-                            <p className="detail-description">Linear Discriminant Analysis (LDA)</p>
+                            <p className="metric-description">Linear Discriminant Analysis (LDA)</p>
                           </div>
                         </div>
 

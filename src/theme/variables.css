@@ -28,6 +28,9 @@ http://ionicframework.com/docs/theming/ */
   --custom-text-color: #333;
   /* Default text color */
   --custom-border-color: #ddd;
+  /* Lighter hover color for cards */
+  --custom-card-hover: #f0f8ff;
+  --custom-card-hover-item: #e6f7ff;
 
 }
 
@@ -74,7 +77,9 @@ http://ionicframework.com/docs/theming/ */
     --custom-text-color: #f4f5f8;
     /* Light text color */
     --custom-border-color: #444444;
-    /* Darker border color for tables and cards */
+    /* Darker hover color for cards */
+    --custom-card-hover: #222;
+    --custom-card-hover-item: #222;
   }
 }
 
