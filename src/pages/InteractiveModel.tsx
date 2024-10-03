@@ -36,7 +36,7 @@ const patients = [
 const WristPredictionPage: React.FC = () => {
     const [selectedPatient, setSelectedPatient] = useState<number | null>(null);
     const [predictionOutcome, setPredictionOutcome] = useState<string | null>(null);
-    const [visibleGif, setVisibleGif] = useState<'flexion' | 'extension' | null>(null);
+    const [visibleGif, setVisibleGif] = useState<string | null>(null);
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
     const [processing, setProcessing] = useState(false);
 
@@ -44,7 +44,7 @@ const WristPredictionPage: React.FC = () => {
     const handleSelectPatient = (patientId: number) => {
         setSelectedPatient(patientId);
         setPredictionOutcome(null); // Clear any previous prediction result
-        setVisibleGif(null); // Clear the visibility of GIFs
+        setVisibleGif(null); // Clear the visibility of GIF
         setButtonsDisabled(false); // Enable buttons when a patient is selected
     };
 
@@ -67,20 +67,23 @@ const WristPredictionPage: React.FC = () => {
 
             // Calculate if the prediction is correct based on the patient's accuracy
             const isCorrect = Math.random() * 100 < patient.accuracy;
-            const correctMovement = Math.random() > 0.5 ? 'flexion' : 'extension';
+            let outcomeGif: 'flexion' | 'extension';
 
             if (isCorrect) {
                 setPredictionOutcome('Correct! 🎉');
-                setVisibleGif(userChoice === correctMovement ? userChoice : correctMovement);
+                outcomeGif = userChoice; // Show the user's chosen movement when correct
             } else {
                 setPredictionOutcome('Incorrect 😔');
-                setVisibleGif(userChoice === 'flexion' ? 'extension' : 'flexion');
+                outcomeGif = userChoice === 'flexion' ? 'extension' : 'flexion'; // Show the opposite movement when incorrect
             }
+
+            // Set the visible GIF
+            setVisibleGif(outcomeGif);
 
             // Re-enable buttons after showing the result
             setTimeout(() => {
                 setButtonsDisabled(false);
-            }, 5000);
+            }, 3000);
         }, 3000); // Processing animation for 3 seconds
     };
 
@@ -193,25 +196,20 @@ const WristPredictionPage: React.FC = () => {
                             </IonCard>
                         )}
 
-                        {/* Prediction Outcome and GIFs */}
+                        {/* Prediction Outcome and GIF */}
                         {!processing && (
                             <IonCard className={`outcome-card ${predictionOutcome?.includes('Correct') ? 'success' : 'error'}`}>
                                 <IonCardContent>
                                     <IonText>
                                         <h2>{predictionOutcome ? predictionOutcome : "Make a prediction to see the outcome"}</h2>
                                     </IonText>
-                                    <div className="gif-container">
+                                    {visibleGif && (
                                         <img
-                                            src={flexionGif}
-                                            alt="Flexion Movement"
-                                            className={`prediction-gif ${visibleGif === 'flexion' ? 'visible' : 'hidden'}`}
+                                            src={visibleGif === 'flexion' ? flexionGif : extensionGif}
+                                            alt={visibleGif === 'flexion' ? "Flexion Movement" : "Extension Movement"}
+                                            className="prediction-gif"
                                         />
-                                        <img
-                                            src={extensionGif}
-                                            alt="Extension Movement"
-                                            className={`prediction-gif ${visibleGif === 'extension' ? 'visible' : 'hidden'}`}
-                                        />
-                                    </div>
+                                    )}
                                 </IonCardContent>
                             </IonCard>
                         )}

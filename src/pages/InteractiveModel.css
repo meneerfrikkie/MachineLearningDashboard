@@ -3,6 +3,7 @@
 /* General Styles for Cards */
 .patient-selection-card,
 .accuracy-card,
+.eeg-image-card,
 .prediction-card {
   margin-bottom: 20px;
   border-radius: 10px;
@@ -15,6 +16,7 @@
   border-radius: 10px;
   margin-top: 20px;
   padding: 20px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .outcome-card.success {
@@ -27,44 +29,20 @@
   color: #7f0000; /* Dark red */
 }
 
-/* Prediction Outcome Animation */
-.prediction-outcome {
+/* Processing Card Styling */
+.processing-card {
   text-align: center;
   margin-top: 20px;
-}
-
-.prediction-video {
-  width: 100%;
-  max-width: 500px;
-  margin-top: 15px;
+  padding: 20px;
   border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Button Styles */
-.ion-button {
-  border-radius: 10px;
-}
-
-@media (max-width: 768px) {
-  .ion-button {
-    font-size: 0.9rem;
-    padding: 12px;
-  }
-
-  .outcome-card {
-    padding: 15px;
-  }
-
-  .prediction-video {
-    max-width: 100%;
-  }
-}
-
+/* Processing Animation Text */
 .processing-text {
   font-size: 1.5rem;
   font-weight: bold;
   color: #007bff;
-  text-align: center;
   animation: blink 1s infinite;
 }
 
@@ -73,16 +51,45 @@
   50% { opacity: 0; }
 }
 
+/* Prediction GIF Styling */
 .prediction-gif {
   width: 100%;
+  max-width: 500px;
   height: auto;
-  display: none; /* Default to hidden */
+  margin-top: 15px;
+  border-radius: 10px;
 }
 
-.prediction-gif.visible {
-  display: block; /* Show when marked as visible */
+/* Button Styles */
+.prediction-button {
+  border-radius: 10px;
+  font-size: 1rem;
+  padding: 10px;
 }
 
-.prediction-gif.hidden {
-  display: none; /* Hide when marked as hidden */
+/* EEG Signal Image */
+.eeg-signal-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .prediction-button {
+    font-size: 0.9rem;
+    padding: 12px;
+  }
+
+  .outcome-card {
+    padding: 15px;
+  }
+
+  .prediction-gif {
+    max-width: 100%;
+  }
+
+  .processing-text {
+    font-size: 1.3rem;
+  }
 }
