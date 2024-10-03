@@ -37,7 +37,7 @@ http://ionicframework.com/docs/theming/ */
   .header-title {
     font-size: 1.6rem;
     font-weight: bold;
-    text-align: center;
+    text-align: left;
   }
 }
 

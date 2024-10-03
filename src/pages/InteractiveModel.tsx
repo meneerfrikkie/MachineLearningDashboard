@@ -26,10 +26,20 @@ import Menu from './Menu';
 
 // Patient list for demonstration with their respective accuracies
 const patients = [
-    { id: 1, name: 'Patient A', accuracy: 85 },
-    { id: 2, name: 'Patient B', accuracy: 78 },
-    { id: 3, name: 'Patient C', accuracy: 92 },
-    { id: 4, name: 'Patient D', accuracy: 88 },
+    { id: 1, name: 'Patient 1', accuracy: 77 },
+    { id: 2, name: 'Patient 2', accuracy: 81 },
+    { id: 3, name: 'Patient 3', accuracy: 74 },
+    { id: 4, name: 'Patient 4', accuracy: 76.67},
+    { id: 1, name: 'Patient 5', accuracy: 84.04 },
+    { id: 2, name: 'Patient 6', accuracy: 82.5 },
+    { id: 3, name: 'Patient 7', accuracy: 76.5 },
+    { id: 4, name: 'Patient 8', accuracy: 86.97 },
+    { id: 1, name: 'Patient 9', accuracy: 81.26 },
+    { id: 2, name: 'Patient 10', accuracy: 74 },
+    { id: 3, name: 'Patient 11', accuracy: 72.26 },
+    { id: 4, name: 'Patient 12', accuracy: 76 },
+    { id: 3, name: 'Patient 13', accuracy: 78 },
+    { id: 4, name: 'Patient 14', accuracy: 80.5 },
 ];
 
 const WristPredictionPage: React.FC = () => {
