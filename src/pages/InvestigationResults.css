@@ -1,0 +1,106 @@
+/* General Table Styling */
+.csv-data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1rem;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header Styling */
+  .csv-data-table thead tr {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .csv-data-table th,
+  .csv-data-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+  
+  /* Table Body Row Styling */
+  .csv-data-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+  }
+  
+  /* Alternating Row Colors */
+  .csv-data-table tbody tr:nth-of-type(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .csv-data-table tbody tr:nth-of-type(odd) {
+    background-color: #ffffff;
+  }
+  
+  /* Row Hover Effect */
+  .csv-data-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Responsive Table Styling */
+  @media (max-width: 768px) {
+    .csv-data-table {
+      border: 0;
+    }
+  
+    .csv-data-table thead {
+      display: none;
+    }
+  
+    .csv-data-table tbody tr {
+      display: block;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+  
+    .csv-data-table tbody tr td {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+      font-size: 0.9rem;
+    }
+  
+    .csv-data-table tbody tr td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      text-transform: uppercase;
+      color: #007bff;
+      margin-right: 10px;
+    }
+  
+    .csv-data-table tbody tr td:last-child {
+      border-bottom: 0;
+    }
+  }
+  
+  /* Additional Styling for Header and Table Container */
+  .csv-table {
+    overflow-x: auto;
+    padding: 0 15px;
+  }
+  
+  /* Style for IonSelect for selecting the table */
+  ion-select {
+    --padding-start: 15px;
+    --padding-end: 15px;
+    --color: #007bff;
+  }
+  
+  ion-select-option {
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  /* Custom Styling for the Mobile Dropdown */
+  @media (max-width: 768px) {
+    ion-select {
+      font-size: 0.9rem;
+    }
+  }

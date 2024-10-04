@@ -15,16 +15,25 @@ import {
 import { useState, useEffect } from 'react';
 import Papa, { ParseResult } from 'papaparse';
 import './Home.css';
+import './InvestigationResults.css';
 import Menu from './Menu';
 
 const ResultsTable: React.FC = () => {
   const [csvData, setCsvData] = useState<any[]>([]);
-  const [selectedTable, setSelectedTable] = useState<string>('ExperimentResultsSummary'); // Default table
+  const [headers, setHeaders] = useState<string[]>([]);
+  const [selectedTable, setSelectedTable] = useState<string | null>(null); // Selected table
 
-  // Function to fetch and parse CSV data based on selected table
-  const fetchCsvData = async (fileName: string) => {
+  // Manually input the paths to your CSV files here
+  const csvFiles = [
+    { label: 'Experiment Results Summary', path: './data/ExperimentResultsSummary.csv' },
+    { label: 'Getting Ready Results Summary', path: './data/GettingReadyResultsSummary.csv' },
+    { label: 'Cross Validation Results', path: './data/CrossValidationResults.csv' },
+  ];
+
+  // Function to fetch and parse CSV data based on the path provided
+  const fetchCsvData = async (filePath: string) => {
     try {
-      const response = await fetch(`./data/${fileName}.csv`);
+      const response = await fetch(filePath);
       if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
       const reader = response.body?.getReader();
       const result = await reader?.read();
@@ -34,6 +43,10 @@ const ResultsTable: React.FC = () => {
       Papa.parse(csvText, {
         header: true,
         complete: (results: ParseResult<any>) => {
+          if (results.data.length > 0) {
+            // Set headers based on CSV keys
+            setHeaders(Object.keys(results.data[0]));
+          }
           setCsvData(results.data);
         },
       });
@@ -44,7 +57,12 @@ const ResultsTable: React.FC = () => {
 
   useEffect(() => {
     // Fetch CSV data based on selected table
-    fetchCsvData(selectedTable);
+    if (selectedTable) {
+      const selectedFile = csvFiles.find((file) => file.label === selectedTable);
+      if (selectedFile) {
+        fetchCsvData(selectedFile.path);
+      }
+    }
   }, [selectedTable]);
 
   return (
@@ -77,17 +95,17 @@ const ResultsTable: React.FC = () => {
           <IonGrid>
             <IonRow>
               <IonCol>
-              <IonSelect
-                value={selectedTable}
-                placeholder="Select Table"
-                onIonChange={(e: CustomEvent) => setSelectedTable(e.detail.value)} // Type the event here
-              >
-                <IonSelectOption value="ExperimentResultsSummary">
-                  Experiment Results Summary
-                </IonSelectOption>
-                <IonSelectOption value="OtherTable1">Other Table 1</IonSelectOption>
-                <IonSelectOption value="OtherTable2">Other Table 2</IonSelectOption>
-              </IonSelect>
+                <IonSelect
+                  value={selectedTable}
+                  placeholder="Select Table"
+                  onIonChange={(e: CustomEvent) => setSelectedTable(e.detail.value)}
+                >
+                  {csvFiles.map((file, index) => (
+                    <IonSelectOption key={index} value={file.label}>
+                      {file.label}
+                    </IonSelectOption>
+                  ))}
+                </IonSelect>
               </IonCol>
             </IonRow>
           </IonGrid>
@@ -96,46 +114,28 @@ const ResultsTable: React.FC = () => {
           <IonGrid className="csv-table">
             <IonRow>
               <IonCol>
-                <table className="csv-data-table">
-                  <thead>
-                    <tr>
-                      <th>Model</th>
-                      <th>Feature Selection</th>
-                      <th>Feature Extraction</th>
-                      <th>Channel Pair Set</th>
-                      <th>Sliding Window Used</th>
-                      <th>Reduced Pairs Greater Than</th>
-                      <th>Mean Accuracy</th>
-                      <th>Mean Precision</th>
-                      <th>Mean Recall</th>
-                      <th>Mean F1 Score</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {csvData.map((row, index) => (
-                      <tr key={index}>
-                        <td data-label="Model">{row.Model}</td>
-                        <td data-label="Feature Selection">{row.FeatureSelection}</td>
-                        <td data-label="Feature Extraction">{row.FeatureExtraction}</td>
-                        <td data-label="Channel Pair Set">{row.ChannelPair}</td>
-                        <td data-label="Sliding Window Used">{row.SlidingWindow}</td>
-                        <td data-label="Reduced Pairs Greater Than">{row.ReducedPairsGreaterThan}</td>
-                        <td data-label="Mean Accuracy">
-                          {parseFloat(row.OverallMeanAccuracy).toFixed(2)}%
-                        </td>
-                        <td data-label="Mean Precision">
-                          {parseFloat(row.OverallMeanPrecision).toFixed(2)}%
-                        </td>
-                        <td data-label="Mean Recall">
-                          {parseFloat(row.OverallMeanRecall).toFixed(2)}%
-                        </td>
-                        <td data-label="Mean F1 Score">
-                          {parseFloat(row.OverallMeanF1Score).toFixed(2)}%
-                        </td>
+                {headers.length > 0 && (
+                  <table className="csv-data-table">
+                    <thead>
+                      <tr>
+                        {headers.map((header) => (
+                          <th key={header}>{header}</th>
+                        ))}
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {csvData.map((row, index) => (
+                        <tr key={index}>
+                          {headers.map((header) => (
+                            <td key={header} data-label={header}>
+                              {row[header] !== undefined ? row[header] : 'N/A'}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                )}
               </IonCol>
             </IonRow>
           </IonGrid>
