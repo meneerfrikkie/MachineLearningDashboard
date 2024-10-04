@@ -121,7 +121,7 @@ const Home: React.FC = () => {
                     </IonCardHeader>
                     <IonCardContent>
                       <div className="image-wrapper">
-                        <img src="./images/ChannelPair2.png" alt="EEG Channels Used" className="eeg-image" />
+                        <img src="./images/ChannelPair3.png" alt="EEG Channels Used" className="eeg-image" />
                       </div>
                       <IonText>
                         We use various EEG channels to understand brain activity better. Channels x, y, and z help us
@@ -150,7 +150,7 @@ const Home: React.FC = () => {
                       <IonGrid>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={85.29} />
+                            <CircularChart percentage={86.86} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>Accuracy 🎯</IonCardTitle>
@@ -161,7 +161,7 @@ const Home: React.FC = () => {
                         </IonRow>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={86.19} />
+                            <CircularChart percentage={87.31} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>Precision ⚙️</IonCardTitle>
@@ -172,7 +172,7 @@ const Home: React.FC = () => {
                         </IonRow>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={85.23} />
+                            <CircularChart percentage={86.82} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>Recall 🔍</IonCardTitle>
@@ -183,7 +183,7 @@ const Home: React.FC = () => {
                         </IonRow>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={85.10} />
+                            <CircularChart percentage={86.77} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>F1 Score ⚖️</IonCardTitle>
