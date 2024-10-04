@@ -11,6 +11,10 @@ import {
   IonMenuButton,
   IonSelect,
   IonSelectOption,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardContent,
 } from '@ionic/react';
 import { useState, useEffect } from 'react';
 import Papa, { ParseResult } from 'papaparse';
@@ -19,16 +23,15 @@ import './InvestigationResults.css';
 import Menu from './Menu';
 
 const ResultsTable: React.FC = () => {
-  const [csvData, setCsvData] = useState<any[]>([]);
-  const [headers, setHeaders] = useState<string[]>([]);
-  const [selectedTable, setSelectedTable] = useState<string | null>(null); // Selected table
-
   // Manually input the paths to your CSV files here
   const csvFiles = [
-    { label: 'Experiment Results Summary', path: './data/ExperimentResultsSummary.csv' },
-    { label: 'Getting Ready Results Summary', path: './data/GettingReadyResultsSummary.csv' },
-    { label: 'Cross Validation Results', path: './data/CrossValidationResults.csv' },
+    { label: 'Getting Ready Results', path: './data/GettingReadyResultsSummary.csv' },
+    { label: 'Holding Movement Results', path: './data/HoldingResultsSummary.csv' },
   ];
+  
+  const [csvData, setCsvData] = useState<any[]>([]);
+  const [headers, setHeaders] = useState<string[]>([]);
+  const [selectedTable, setSelectedTable] = useState<string>(csvFiles[0].label); // Auto-select the first table
 
   // Function to fetch and parse CSV data based on the path provided
   const fetchCsvData = async (filePath: string) => {
@@ -91,21 +94,31 @@ const ResultsTable: React.FC = () => {
             </IonToolbar>
           </IonHeader>
 
-          {/* Dropdown to Select Table */}
+          {/* Card to Select Table */}
           <IonGrid>
             <IonRow>
-              <IonCol>
-                <IonSelect
-                  value={selectedTable}
-                  placeholder="Select Table"
-                  onIonChange={(e: CustomEvent) => setSelectedTable(e.detail.value)}
-                >
-                  {csvFiles.map((file, index) => (
-                    <IonSelectOption key={index} value={file.label}>
-                      {file.label}
-                    </IonSelectOption>
-                  ))}
-                </IonSelect>
+              <IonCol size="12" size-md="4">
+                <IonCard className="table-selection-card">
+                  <IonCardHeader>
+                    <IonCardTitle>Select a Table 📝</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+                    <IonSelect
+                      value={selectedTable}
+                      placeholder="Select Table"
+                      onIonChange={(e: CustomEvent) => setSelectedTable(e.detail.value)}
+                      interfaceOptions={{
+                        header: 'Select Table',
+                      }}
+                    >
+                      {csvFiles.map((file, index) => (
+                        <IonSelectOption key={index} value={file.label}>
+                          {file.label}
+                        </IonSelectOption>
+                      ))}
+                    </IonSelect>
+                  </IonCardContent>
+                </IonCard>
               </IonCol>
             </IonRow>
           </IonGrid>

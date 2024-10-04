@@ -45,7 +45,7 @@ const Home: React.FC = () => {
             <IonButtons slot="start">
               <IonMenuButton autoHide={false}></IonMenuButton>
             </IonButtons>
-            <IonTitle className="header-title">Dashboard 🎉</IonTitle>
+            <IonTitle className="header-title">Dashboard</IonTitle>
           </IonToolbar>
         </IonHeader>
 

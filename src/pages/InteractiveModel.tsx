@@ -102,7 +102,7 @@ const WristPredictionPage: React.FC = () => {
                     <IonButtons slot="start">
                         <IonMenuButton autoHide={false}></IonMenuButton>
                     </IonButtons>
-                    <IonTitle className="header-title">Interactive Model 🤖</IonTitle>
+                    <IonTitle className="header-title">Interactive Model</IonTitle>
                 </IonToolbar>
             </IonHeader>
 
