@@ -101,13 +101,12 @@ const Home: React.FC = () => {
                 </motion.div>
 
                 {/* Wrist Prediction Animation */}
-                <motion.div
-                  initial={{ x: 100, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.5 }}
-                >
+                <IonCard className="custom-card playful-card">
+                  <IonCardHeader className="card-header">
+                    <IonCardTitle className="card-title">Live Model Prediction 🫴</IonCardTitle>
+                  </IonCardHeader>
                   <WristPredictionAnimation />
-                </motion.div>
+                </IonCard>
 
                 {/* EEG Channels Image and Description in one card */}
                 <motion.div
