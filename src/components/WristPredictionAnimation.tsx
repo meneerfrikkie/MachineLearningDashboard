@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Papa from 'papaparse';
 import { IonText, IonRow, IonCol, IonCardTitle, IonCard, IonCardHeader, IonCardContent, IonTitle } from '@ionic/react';
 import { motion } from 'framer-motion';
+import './WristPredictionAnimation.css';
 
 // Replace with actual image paths for wrist flexion/extension
 import wristFlexionImage from '/images/WristFlexion.png';
@@ -52,7 +53,7 @@ const WristPredictionAnimation: React.FC = () => {
   return (
     <IonCard className="custom-card">
       <IonCardHeader className="card-header">
-        <IonCardTitle className="card-title">Live Model Prediction</IonCardTitle>
+        <IonCardTitle className="card-title">Live Model Prediction 🫴</IonCardTitle>
       </IonCardHeader>
       <IonCardContent>
         <IonRow className="prediction-row" style={{ textAlign: 'center' }}>

@@ -27,6 +27,7 @@ const ResultsTable: React.FC = () => {
   const csvFiles = [
     { label: 'Getting Ready Results', path: './data/GettingReadyResultsSummary.csv' },
     { label: 'Holding Movement Results', path: './data/HoldingResultsSummary.csv' },
+    { label: 'Getting Ready + Holding Movement Results', path: './data/GettingReadyHoldingSummary.csv' },
   ];
   
   const [csvData, setCsvData] = useState<any[]>([]);

@@ -150,7 +150,7 @@ const Home: React.FC = () => {
                       <IonGrid>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={86.86} />
+                            <CircularChart percentage={85.27} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>Accuracy 🎯</IonCardTitle>
@@ -161,7 +161,18 @@ const Home: React.FC = () => {
                         </IonRow>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={87.31} />
+                            <CircularChart percentage={4.11} />
+                          </IonCol>
+                          <IonCol size="12">
+                            <IonCardTitle>Standard Deviation 🎯</IonCardTitle>
+                            <IonText className="metric-description">
+                              Standard deviation is a measure of the amount of variation or dispersion of a set of values.
+                            </IonText>
+                          </IonCol>
+                        </IonRow>
+                        <IonRow className="metric-row">
+                          <IonCol size="4">
+                            <CircularChart percentage={85.56} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>Precision ⚙️</IonCardTitle>
@@ -172,7 +183,7 @@ const Home: React.FC = () => {
                         </IonRow>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={86.82} />
+                            <CircularChart percentage={85.21} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>Recall 🔍</IonCardTitle>
@@ -183,7 +194,7 @@ const Home: React.FC = () => {
                         </IonRow>
                         <IonRow className="metric-row">
                           <IonCol size="4">
-                            <CircularChart percentage={86.77} />
+                            <CircularChart percentage={85.18} />
                           </IonCol>
                           <IonCol size="12">
                             <IonCardTitle>F1 Score ⚖️</IonCardTitle>

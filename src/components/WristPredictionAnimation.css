@@ -1,0 +1,146 @@
+/* Menu Button Styling */
+ion-menu-button {
+    --color: var(--custom-header-icon, #5e5e5e);
+    margin-left: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    ion-menu-button {
+      margin-left: 10px; 
+    }
+  }
+  
+  /* Custom Card Styling */
+  .custom-card, .playful-card {
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    background-color: var(--custom-card-bg);
+    transition: transform 0.4s ease, background-color 0.4s ease;
+  }
+  
+  .playful-card:hover {
+    transform: translateY(-10px) scale(1.03);
+    background-color: var(--custom-card-hover); /* Light playful blue background on hover */
+  }
+  
+  /* Card Header Styling */
+  .card-header {
+    text-align: justify;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+  
+  /* Card Title Styling */
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 10px 0;
+    color: var(--custom-header-text);
+  }
+  
+  /* Metric Styling */
+  .metric-row {
+    align-items: center;
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  .metric-description {
+    font-size: 1rem;
+    color: var(--custom-card-metric);
+    margin-bottom: 20px;
+  }
+  
+  /* Model Item and Details Styling */
+  .model-details {
+    margin-bottom: 20px;
+  }
+  
+  .model-item, .playful-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .playful-item:hover {
+    transform: translateY(-2.5px);
+    background-color: var(--custom-card-hover-item); /* Light playful effect on hover */
+  }
+  
+  .model-icon {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-right: 15px;
+    transition: transform 0.3s;
+  }
+  
+  .model-icon:hover {
+    transform: rotate(20deg);
+  }
+  
+  .detail-heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--custom-header-text);
+    text-align: justify;
+  }
+  
+  .detail-description {
+    font-size: 1rem;
+    color: var(--custom-card-text);
+    margin-top: 5px;
+  }
+  
+  /* Image Styling */
+  .image-wrapper {
+    width: 100%;
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .eeg-image {
+    width: 80%;
+    height: auto;
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .header-title {
+      font-size: 1.2rem;
+    }
+  
+    .metric-row {
+      flex-direction: column;
+      text-align: left;
+    }
+  
+    .metric-description {
+      text-align: left;
+    }
+  
+    .eeg-image {
+      width: 100%;
+    }
+  
+    .model-item {
+      flex-direction: row;
+      align-items: flex-start;
+      padding: 15px;
+    }
+  
+    .model-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+  
+    .model-info {
+      text-align: center;
+    }
+  }
