@@ -150,7 +150,7 @@ const Home: React.FC = () => {
                           <IonCol size="4">
                             <CircularChart percentage={85.27} />
                           </IonCol>
-                          <IonCol size="12">
+                          <IonCol size="8" className="metric-description-col">
                             <IonCardTitle>Accuracy 🎯</IonCardTitle>
                             <IonText className="metric-description">
                               Accuracy refers to the percentage of correct predictions out of all predictions made.
@@ -161,7 +161,7 @@ const Home: React.FC = () => {
                           <IonCol size="4">
                             <CircularChart percentage={4.11} />
                           </IonCol>
-                          <IonCol size="12">
+                          <IonCol size="8" className="metric-description-col">
                             <IonCardTitle>Standard Deviation 🎯</IonCardTitle>
                             <IonText className="metric-description">
                               Standard deviation is a measure of the amount of variation or dispersion of a set of values.
@@ -172,7 +172,7 @@ const Home: React.FC = () => {
                           <IonCol size="4">
                             <CircularChart percentage={85.56} />
                           </IonCol>
-                          <IonCol size="12">
+                          <IonCol size="8" className="metric-description-col">
                             <IonCardTitle>Precision ⚙️</IonCardTitle>
                             <IonText className="metric-description">
                               Precision is the percentage of true positive predictions among all positive predictions.
@@ -183,7 +183,7 @@ const Home: React.FC = () => {
                           <IonCol size="4">
                             <CircularChart percentage={85.21} />
                           </IonCol>
-                          <IonCol size="12">
+                          <IonCol size="8" className="metric-description-col">
                             <IonCardTitle>Recall 🔍</IonCardTitle>
                             <IonText className="metric-description">
                               Recall is the percentage of true positive predictions among all actual positive instances.
@@ -194,7 +194,7 @@ const Home: React.FC = () => {
                           <IonCol size="4">
                             <CircularChart percentage={85.18} />
                           </IonCol>
-                          <IonCol size="12">
+                          <IonCol size="8" className="metric-description-col">
                             <IonCardTitle>F1 Score ⚖️</IonCardTitle>
                             <IonText className="metric-description">
                               The F1 score is the harmonic mean of precision and recall, providing a balance between the two.

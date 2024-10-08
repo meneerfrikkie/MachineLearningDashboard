@@ -40,17 +40,38 @@ ion-menu-button {
   color: var(--custom-header-text);
 }
 
-/* Metric Styling */
+/* Metric Row Styling */
 .metric-row {
+  display: flex;
   align-items: center;
-  margin-bottom: 15px;
-  text-align: left;
+  justify-content: flex-start; /* Ensures the CircularChart and text align side by side */
+  margin-bottom: 20px;
 }
 
+.metric-row .ion-col {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px; /* Adds space between CircularChart and text */
+}
+
+/* Metric Column for the description */
+.metric-description-col {
+  flex: 1; /* Makes the description take up available space next to the chart */
+}
+
+/* Align the Metric Text and Chart */
 .metric-description {
   font-size: 1rem;
   color: var(--custom-card-metric);
-  margin-bottom: 20px;
+  margin: 0; /* Removes extra margin */
+  text-align: left;
+}
+
+.metric-details {
+  font-size: 0.9rem;
+  color: var(--custom-card-details);
+  margin: 0; /* Keeps the metric text aligned neatly */
 }
 
 /* Model Item and Details Styling */
@@ -116,6 +137,7 @@ ion-menu-button {
     font-size: 1.2rem;
   }
 
+  /* For mobile, stack the chart and metric description vertically */
   .metric-row {
     flex-direction: column;
     text-align: left;
