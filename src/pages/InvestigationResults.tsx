@@ -127,12 +127,13 @@ const ResultsTable: React.FC = () => {
           {/* Card to Select Table */}
           <IonGrid>
             <IonRow>
-              <IonCol size="12" size-md="4">
+              <IonCol size="12" size-md="6">
                 <IonCard className="table-selection-card">
                   <IonCardHeader>
                     <IonCardTitle>Select a Table 📝</IonCardTitle>
                   </IonCardHeader>
                   <IonCardContent>
+                    {/* Select Table */}
                     <IonSelect
                       value={selectedTable}
                       placeholder="Select Table"
@@ -147,33 +148,38 @@ const ResultsTable: React.FC = () => {
                         </IonSelectOption>
                       ))}
                     </IonSelect>
+                    </IonCardContent>
+                    <IonCardHeader>
+                    <IonCardTitle>Filter a Table 📝</IonCardTitle>
+                  </IonCardHeader>
+                  <IonCardContent>
+
+                    {/* Filtering Inputs for First 4 Columns */}
+                    {headers.length > 0 && (
+                      <IonRow>
+                        {headers.slice(0, 4).map((header) => (
+                          <IonCol key={header} size="12" size-md="3">
+                            <IonLabel>{header}</IonLabel>
+                            <IonSelect
+                              placeholder={`Filter by ${header}`}
+                              onIonChange={(e: CustomEvent) => setFilterCriteria({ ...filterCriteria, [header]: e.detail.value! })}
+                              value={filterCriteria[header] || ''}
+                            >
+                              <IonSelectOption value="">All</IonSelectOption>
+                              {getUniqueColumnValues(header).map((value, index) => (
+                                <IonSelectOption key={index} value={value}>
+                                  {value}
+                                </IonSelectOption>
+                              ))}
+                            </IonSelect>
+                          </IonCol>
+                        ))}
+                      </IonRow>
+                    )}
                   </IonCardContent>
                 </IonCard>
               </IonCol>
             </IonRow>
-
-            {/* Filtering Inputs for First 4 Columns */}
-            {headers.length > 0 && (
-              <IonRow>
-                {headers.slice(0, 4).map((header) => (
-                  <IonCol key={header} size="12" size-md="3">
-                    <IonLabel>{header}</IonLabel>
-                    <IonSelect
-                      placeholder={`Filter by ${header}`}
-                      onIonChange={(e: CustomEvent) => setFilterCriteria({ ...filterCriteria, [header]: e.detail.value! })}
-                      value={filterCriteria[header] || ''}
-                    >
-                      <IonSelectOption value="">All</IonSelectOption>
-                      {getUniqueColumnValues(header).map((value, index) => (
-                        <IonSelectOption key={index} value={value}>
-                          {value}
-                        </IonSelectOption>
-                      ))}
-                    </IonSelect>
-                  </IonCol>
-                ))}
-              </IonRow>
-            )}
           </IonGrid>
 
           {/* Table Display */}
