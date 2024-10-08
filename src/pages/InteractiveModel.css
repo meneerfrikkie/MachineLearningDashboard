@@ -98,3 +98,29 @@
     font-size: 1.3rem;
   }
 }
+
+/* Centered content for when the EEG image is visible */
+.eeg-content-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 15px;
+}
+
+/* Left-aligned content for when the EEG image is not visible */
+.eeg-content-left {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  text-align: left;
+  margin: 15px;
+}
+
+.centered-text {
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
+}

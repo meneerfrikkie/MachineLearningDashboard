@@ -18,12 +18,24 @@ import {
     IonButtons,
     IonMenuButton,
 } from '@ionic/react';
-import flexionGif from '/images/WristFlexion.gif'; // Replace with the correct path to your flexion GIF
-import extensionGif from '/images/WristExtension.gif'; // Replace with the correct path to your extension GIF
-import eegSignalImage from '/images/EEGSignal.png';
+import flexionGif from '/images/Flexion.gif'; // Path to flexion GIF
+import extensionGif from '/images/Extension.gif'; // Path to extension GIF
 import './InteractiveModel.css';
 
-// Patient list for demonstration with their respective accuracies
+// Random EEG signal images for flexion and extension
+const flexionEEGImages = [
+    '/images/WF/Trial1_Channel1.png',
+    '/images/WF/Trial1_Channel2.png',
+    // Add more WF images
+];
+
+const extensionEEGImages = [
+    '/images/WE/Trial1_Channel1.png',
+    '/images/WE/Trial1_Channel2.png',
+    // Add more WE images
+];
+
+// Patient list for demonstration
 const patients = [
     { id: 1, name: 'Patient 1', accuracy: 78.53 },
   { id: 2, name: 'Patient 2', accuracy: 90.50 },
@@ -41,58 +53,68 @@ const patients = [
   { id: 14, name: 'Patient 14', accuracy: 86.01 },
 ];
 
+// Function to randomly choose an EEG image from a list
+const getRandomEEGImage = (images: string[]) => {
+    return images[Math.floor(Math.random() * images.length)];
+};
+
 const WristPredictionPage: React.FC = () => {
     const [selectedPatient, setSelectedPatient] = useState<number | null>(null);
     const [predictionOutcome, setPredictionOutcome] = useState<string | null>(null);
     const [visibleGif, setVisibleGif] = useState<string | null>(null);
+    const [visibleEEGImage, setVisibleEEGImage] = useState<string | null>(null);
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
     const [processing, setProcessing] = useState(false);
 
     // Handle patient selection
     const handleSelectPatient = (patientId: number) => {
         setSelectedPatient(patientId);
-        setPredictionOutcome(null); // Clear any previous prediction result
-        setVisibleGif(null); // Clear the visibility of GIF
-        setButtonsDisabled(false); // Enable buttons when a patient is selected
+        setPredictionOutcome(null);
+        setVisibleGif(null);
+        setVisibleEEGImage(null); // Clear EEG image
+        setButtonsDisabled(false);
     };
 
-    // Simulate a prediction outcome based on patient's accuracy
+    // Simulate prediction and select a random EEG image
     const handlePrediction = (userChoice: 'flexion' | 'extension') => {
         if (selectedPatient === null) return;
 
         const patient = patients.find((p) => p.id === selectedPatient);
         if (!patient) return;
 
-        // Show processing animation
         setProcessing(true);
         setPredictionOutcome(null);
         setVisibleGif(null);
+        setVisibleEEGImage(null); // Clear previous EEG image
         setButtonsDisabled(true);
 
-        // Simulate processing delay
         setTimeout(() => {
             setProcessing(false);
-
-            // Calculate if the prediction is correct based on the patient's accuracy
             const isCorrect = Math.random() * 100 < patient.accuracy;
             let outcomeGif: 'flexion' | 'extension';
+            let eegImage: string;
 
             if (isCorrect) {
-                setPredictionOutcome(`You expected wrist ${userChoice} and our prediction was... Correct! 🎉`);
-                outcomeGif = userChoice; // Show the user's chosen movement when correct
+                setPredictionOutcome(`You expected Wrist ${visibleGif === 'flexion' ? 'Flexion' : 'Extension'} and our prediction was... Correct! 🎉`);
+                outcomeGif = userChoice; // Show user's choice GIF
+                eegImage = userChoice === 'flexion'
+                    ? getRandomEEGImage(flexionEEGImages)
+                    : getRandomEEGImage(extensionEEGImages); // Choose random EEG
             } else {
                 setPredictionOutcome(`You expected wrist ${userChoice} but our prediction was... Incorrect 😔`);
-                outcomeGif = userChoice === 'flexion' ? 'extension' : 'flexion'; // Show the opposite movement when incorrect
+                outcomeGif = userChoice === 'flexion' ? 'extension' : 'flexion'; // Show opposite GIF
+                eegImage = userChoice === 'flexion'
+                    ? getRandomEEGImage(extensionEEGImages)
+                    : getRandomEEGImage(flexionEEGImages); // Choose opposite EEG
             }
 
-            // Set the visible GIF
             setVisibleGif(outcomeGif);
+            setVisibleEEGImage(eegImage); // Set random EEG image
 
-            // Re-enable buttons after showing the result
             setTimeout(() => {
                 setButtonsDisabled(false);
-            }, 3000);
-        }, 3000); // Processing animation for 3 seconds
+            }, 2000);
+        }, 3000); // Simulate 3 seconds of processing
     };
 
     return (
@@ -108,8 +130,9 @@ const WristPredictionPage: React.FC = () => {
 
             <IonContent className="ion-padding interactive-model-content">
                 <IonRow className="full-height">
-                    {/* Mini Left Cover with Controls and EEG Image */}
+                    {/* Left Side - Patient Selection, Accuracy, EEG Image */}
                     <IonCol size="12" size-md="4" className="left-cover full-height">
+                        {/* Patient Selection */}
                         <IonCard className="patient-selection-card">
                             <IonCardHeader>
                                 <IonCardTitle>Select a Patient 🧑‍⚕️</IonCardTitle>
@@ -129,7 +152,7 @@ const WristPredictionPage: React.FC = () => {
                             </IonCardContent>
                         </IonCard>
 
-                        {/* Display Selected Patient's Accuracy */}
+                        {/* Model Accuracy */}
                         <IonCard className="accuracy-card">
                             <IonCardHeader>
                                 <IonCardTitle>Model Accuracy 📊</IonCardTitle>
@@ -137,8 +160,7 @@ const WristPredictionPage: React.FC = () => {
                             <IonCardContent>
                                 <IonText>
                                     {selectedPatient !== null ? (
-                                        `Accuracy for ${patients.find((p) => p.id === selectedPatient)?.name}: ${patients.find((p) => p.id === selectedPatient)?.accuracy
-                                        }%`
+                                        `Accuracy for ${patients.find((p) => p.id === selectedPatient)?.name}: ${patients.find((p) => p.id === selectedPatient)?.accuracy}%`
                                     ) : (
                                         "Select a patient to see the accuracy"
                                     )}
@@ -151,20 +173,24 @@ const WristPredictionPage: React.FC = () => {
                             <IonCardHeader>
                                 <IonCardTitle>EEG Signal 📈</IonCardTitle>
                             </IonCardHeader>
-                            <IonCardContent>
-                                <img
-                                    src={eegSignalImage}
-                                    alt="EEG Signal"
-                                    className="eeg-signal-image"
-                                />
+                            <IonCardContent className={visibleEEGImage ? 'eeg-content-centered' : 'eeg-content-left'}>
+                                {visibleEEGImage ? (
+                                    <>
+                                        <img src={visibleEEGImage} alt="EEG Signal" className="eeg-signal-image" />
+                                        <IonText className="centered-text">
+                                            {`EEG Signal of the Patient Performing Wrist ${visibleGif === 'flexion' ? 'Flexion' : 'Extension'}`}
+                                        </IonText>
+                                    </>
+                                ) : (
+                                    <IonText style={{ textAlign: 'left' }}>Make a prediction to see the EEG signal</IonText>
+                                )}
                             </IonCardContent>
                         </IonCard>
                     </IonCol>
 
-                    {/* Right Cover Box with Output */}
-                    {/* Right Cover Box with Output */}
+                    {/* Right Side - Prediction and Outcome */}
                     <IonCol size="12" size-md="8" className="right-cover full-height">
-                        {/* User Choice - Flexion or Extension */}
+                        {/* Prediction Options */}
                         <IonCard className="prediction-card">
                             <IonCardHeader>
                                 <IonCardTitle>Make a Prediction 🤔</IonCardTitle>
