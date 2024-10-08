@@ -15,6 +15,7 @@ import {
   IonCardHeader,
   IonCardTitle,
   IonCardContent,
+  IonLabel,
 } from '@ionic/react';
 import { useState, useEffect } from 'react';
 import Papa, { ParseResult } from 'papaparse';
@@ -29,10 +30,12 @@ const ResultsTable: React.FC = () => {
     { label: 'Holding Movement Results', path: './data/HoldingResultsSummary.csv' },
     { label: 'Getting Ready + Holding Movement Results', path: './data/GettingReadyHoldingSummary.csv' },
   ];
-  
+
   const [csvData, setCsvData] = useState<any[]>([]);
+  const [filteredData, setFilteredData] = useState<any[]>([]); // Store the filtered data
   const [headers, setHeaders] = useState<string[]>([]);
   const [selectedTable, setSelectedTable] = useState<string>(csvFiles[0].label); // Auto-select the first table
+  const [filterCriteria, setFilterCriteria] = useState<{ [key: string]: string }>({}); // Store filter values per column
 
   // Function to fetch and parse CSV data based on the path provided
   const fetchCsvData = async (filePath: string) => {
@@ -48,16 +51,36 @@ const ResultsTable: React.FC = () => {
         header: true,
         complete: (results: ParseResult<any>) => {
           if (results.data.length > 0) {
-            // Set headers based on CSV keys
-            setHeaders(Object.keys(results.data[0]));
+            setHeaders(Object.keys(results.data[0])); // Set headers based on CSV keys
+            setCsvData(results.data);
+            setFilteredData(results.data); // Initialize filtered data to be the same as csvData
           }
-          setCsvData(results.data);
         },
       });
     } catch (error) {
       console.error('Error fetching or parsing CSV:', error);
     }
   };
+
+  // Update filtered data when filter criteria or CSV data changes
+  useEffect(() => {
+    const applyFilters = () => {
+      let filtered = [...csvData]; // Start with the full data set
+      Object.keys(filterCriteria).forEach((header) => {
+        if (filterCriteria[header]) {
+          // Filter the data based on user input
+          filtered = filtered.filter((row) =>
+            String(row[header])
+              .toLowerCase()
+              .includes(filterCriteria[header].toLowerCase())
+          );
+        }
+      });
+      setFilteredData(filtered); // Update filtered data
+    };
+
+    applyFilters();
+  }, [filterCriteria, csvData]);
 
   useEffect(() => {
     // Fetch CSV data based on selected table
@@ -68,6 +91,12 @@ const ResultsTable: React.FC = () => {
       }
     }
   }, [selectedTable]);
+
+  // Helper function to get unique values for a given column to display in the filter dropdown
+  const getUniqueColumnValues = (column: string) => {
+    const values = csvData.map((row) => row[column]).filter((value, index, self) => self.indexOf(value) === index);
+    return values;
+  };
 
   return (
     <>
@@ -122,6 +151,29 @@ const ResultsTable: React.FC = () => {
                 </IonCard>
               </IonCol>
             </IonRow>
+
+            {/* Filtering Inputs for First 4 Columns */}
+            {headers.length > 0 && (
+              <IonRow>
+                {headers.slice(0, 4).map((header) => (
+                  <IonCol key={header} size="12" size-md="3">
+                    <IonLabel>{header}</IonLabel>
+                    <IonSelect
+                      placeholder={`Filter by ${header}`}
+                      onIonChange={(e: CustomEvent) => setFilterCriteria({ ...filterCriteria, [header]: e.detail.value! })}
+                      value={filterCriteria[header] || ''}
+                    >
+                      <IonSelectOption value="">All</IonSelectOption>
+                      {getUniqueColumnValues(header).map((value, index) => (
+                        <IonSelectOption key={index} value={value}>
+                          {value}
+                        </IonSelectOption>
+                      ))}
+                    </IonSelect>
+                  </IonCol>
+                ))}
+              </IonRow>
+            )}
           </IonGrid>
 
           {/* Table Display */}
@@ -138,7 +190,7 @@ const ResultsTable: React.FC = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {csvData.map((row, index) => (
+                      {filteredData.map((row, index) => (
                         <tr key={index}>
                           {headers.map((header) => (
                             <td key={header} data-label={header}>
