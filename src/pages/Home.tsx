@@ -123,8 +123,7 @@ const Home: React.FC = () => {
                         <img src="./images/ChannelPair3.png" alt="EEG Channels Used" className="eeg-image" />
                       </div>
                       <IonText>
-                        We use various EEG channels to understand brain activity better. Channels x, y, and z help us
-                        capture the coolest brain waves!
+                        The select EEG channels used in our top performing Machine Learning Model.
                       </IonText>
                     </IonCardContent>
                   </IonCard>
