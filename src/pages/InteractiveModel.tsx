@@ -95,7 +95,7 @@ const WristPredictionPage: React.FC = () => {
             let eegImage: string;
 
             if (isCorrect) {
-                setPredictionOutcome(`You expected Wrist ${visibleGif === 'flexion' ? 'Flexion' : 'Extension'} and our prediction was... Correct! 🎉`);
+                setPredictionOutcome(`You expected wrist ${userChoice} and our prediction was... Correct! 🎉`);
                 outcomeGif = userChoice; // Show user's choice GIF
                 eegImage = userChoice === 'flexion'
                     ? getRandomEEGImage(flexionEEGImages)
