@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     IonPage,
     IonContent,
@@ -18,8 +18,13 @@ import {
     IonButtons,
     IonMenuButton,
 } from '@ionic/react';
-import flexionGif from '/images/Flexion.gif'; // Path to flexion GIF
-import extensionGif from '/images/Extension.gif'; // Path to extension GIF
+
+// Import GIFs for light and dark modes
+import flexionGifLight from '/images/Flexion.gif'; // Light mode Flexion GIF
+import extensionGifLight from '/images/Extention.gif'; // Light mode Extension GIF
+import flexionGifDark from '/images/FlexionWhite.gif'; // Dark mode Flexion GIF
+import extensionGifDark from '/images/ExtentionWhite.gif'; // Dark mode Extension GIF
+
 import './InteractiveModel.css';
 
 // Random EEG signal images for flexion and extension
@@ -38,19 +43,19 @@ const extensionEEGImages = [
 // Patient list for demonstration
 const patients = [
     { id: 1, name: 'Patient 1', accuracy: 78.53 },
-  { id: 2, name: 'Patient 2', accuracy: 90.50 },
-  { id: 3, name: 'Patient 3', accuracy: 84.02 },
-  { id: 4, name: 'Patient 4', accuracy: 77.22 },
-  { id: 5, name: 'Patient 5', accuracy: 91.21 },
-  { id: 6, name: 'Patient 6', accuracy: 87.48 },
-  { id: 7, name: 'Patient 7', accuracy: 87.01 },
-  { id: 8, name: 'Patient 8', accuracy: 86.43 },
-  { id: 9, name: 'Patient 9', accuracy: 89.58 },
-  { id: 10, name: 'Patient 10', accuracy: 82.52 },
-  { id: 11, name: 'Patient 11', accuracy: 89.89 },
-  { id: 12, name: 'Patient 12', accuracy: 84.49 },
-  { id: 13, name: 'Patient 13', accuracy: 82.99 },
-  { id: 14, name: 'Patient 14', accuracy: 86.01 },
+    { id: 2, name: 'Patient 2', accuracy: 90.50 },
+    { id: 3, name: 'Patient 3', accuracy: 84.02 },
+    { id: 4, name: 'Patient 4', accuracy: 77.22 },
+    { id: 5, name: 'Patient 5', accuracy: 91.21 },
+    { id: 6, name: 'Patient 6', accuracy: 87.48 },
+    { id: 7, name: 'Patient 7', accuracy: 87.01 },
+    { id: 8, name: 'Patient 8', accuracy: 86.43 },
+    { id: 9, name: 'Patient 9', accuracy: 89.58 },
+    { id: 10, name: 'Patient 10', accuracy: 82.52 },
+    { id: 11, name: 'Patient 11', accuracy: 89.89 },
+    { id: 12, name: 'Patient 12', accuracy: 84.49 },
+    { id: 13, name: 'Patient 13', accuracy: 82.99 },
+    { id: 14, name: 'Patient 14', accuracy: 86.01 },
 ];
 
 // Function to randomly choose an EEG image from a list
@@ -65,6 +70,21 @@ const WristPredictionPage: React.FC = () => {
     const [visibleEEGImage, setVisibleEEGImage] = useState<string | null>(null);
     const [buttonsDisabled, setButtonsDisabled] = useState(false);
     const [processing, setProcessing] = useState(false);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    // Detect dark mode preference
+    useEffect(() => {
+        const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+        setIsDarkMode(darkModeMediaQuery.matches);
+
+        // Event listener to update when dark mode preference changes
+        const handleChange = (e: MediaQueryListEvent) => setIsDarkMode(e.matches);
+        darkModeMediaQuery.addEventListener('change', handleChange);
+
+        return () => {
+            darkModeMediaQuery.removeEventListener('change', handleChange);
+        };
+    }, []);
 
     // Handle patient selection
     const handleSelectPatient = (patientId: number) => {
@@ -108,7 +128,12 @@ const WristPredictionPage: React.FC = () => {
                     : getRandomEEGImage(flexionEEGImages); // Choose opposite EEG
             }
 
-            setVisibleGif(outcomeGif);
+            // Use dark or light mode GIFs based on the mode
+            const gifToShow = isDarkMode
+                ? outcomeGif === 'flexion' ? flexionGifDark : extensionGifDark
+                : outcomeGif === 'flexion' ? flexionGifLight : extensionGifLight;
+
+            setVisibleGif(gifToShow);
             setVisibleEEGImage(eegImage); // Set random EEG image
 
             setTimeout(() => {
@@ -178,7 +203,7 @@ const WristPredictionPage: React.FC = () => {
                                     <>
                                         <img src={visibleEEGImage} alt="EEG Signal" className="eeg-signal-image" />
                                         <IonText className="centered-text">
-                                            {`EEG Signal of the Patient Performing Wrist ${visibleGif === 'flexion' ? 'Flexion' : 'Extension'}`}
+                                            {`EEG Signal of the Patient Performing Wrist ${visibleGif === flexionGifLight || visibleGif === flexionGifDark ? 'Flexion' : 'Extension'}`}
                                         </IonText>
                                     </>
                                 ) : (
@@ -196,6 +221,7 @@ const WristPredictionPage: React.FC = () => {
                                 <IonCardTitle>Make a Prediction 🤔</IonCardTitle>
                             </IonCardHeader>
                             <IonCardContent>
+                                <IonText> Select a wrist movement button below to make the prediction. </IonText>
                                 <IonRow>
                                     <IonCol size="6">
                                         <IonButton
@@ -241,8 +267,8 @@ const WristPredictionPage: React.FC = () => {
                                     </IonText>
                                     {visibleGif && (
                                         <img
-                                            src={visibleGif === 'flexion' ? flexionGif : extensionGif}
-                                            alt={visibleGif === 'flexion' ? "Flexion Movement" : "Extension Movement"}
+                                            src={visibleGif}
+                                            alt={visibleGif === flexionGifLight || visibleGif === flexionGifDark ? "Flexion Movement" : "Extension Movement"}
                                             className="prediction-gif"
                                         />
                                     )}
